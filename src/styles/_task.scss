@@ -1,0 +1,113 @@
+.task {
+	width: 100%;
+	min-height: 60px;
+	height: fit-content;
+	padding: 12px;
+
+	border-radius: 12px;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+	position: relative;
+
+	color: white;
+	&:hover {
+		.align-left {
+			p {
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		}
+		.hover-options {
+			height: 75%;
+			display: flex;
+			align-items: center;
+			padding: 0 12px 0 0;
+			position: absolute;
+			right: 0;
+			top: auto;
+			z-index: 5;
+		}
+	}
+}
+
+.task.High {
+	border: none;
+	background-color: #eb6e6e;
+	&:hover {
+		background-color: #ce5959;
+	}
+}
+
+.task.Medium {
+	border: none;
+	background-color: #eb8c6e;
+	&:hover {
+		background-color: #e37957;
+	}
+}
+
+.overflow-gradient.High {
+	border: none;
+	width: 24px;
+	height: 100%;
+	background: linear-gradient(270deg, #ce5959 0%, rgba(206, 89, 89, 0) 100%);
+}
+
+.hover-options-inner {
+	height: 100%;
+	//background-color: #ce5959;
+	display: flex;
+	align-items: center;
+}
+
+.align-left {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 12px;
+	p {
+		width: 100%;
+		height: fit-content;
+		font-size: 18px;
+		position: relative;
+		top: 0;
+		left: 0;
+		z-index: 0;
+	}
+}
+
+.drag-handle {
+	margin-right: 12px;
+	cursor: pointer;
+}
+
+.to-do-checkbox {
+	min-width: 28px;
+	width: 28px;
+	height: 28px;
+	border: 2px solid white;
+	border-radius: 28px;
+	background-color: rgba(255, 255, 255, 0.5);
+	appearance: none;
+	margin-right: 12px;
+	cursor: pointer;
+}
+
+.hover-options {
+	display: none;
+}
+
+.edit-icon,
+.delete-icon {
+	cursor: pointer;
+	height: 28px;
+	width: 28px;
+}
+
+.delete-icon {
+	margin-left: 8px;
+}

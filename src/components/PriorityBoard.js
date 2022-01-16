@@ -1,4 +1,5 @@
 import React from "react";
+import Task from "./Task";
 
 import plusIcon from "../img/plus.svg";
 
@@ -24,7 +25,20 @@ const PriorityBoard = ({ priority }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-			<div className="task-container"></div>
+			<div className="task-container">
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+				<Task />
+			</div>
 		</div>
 	);
 };

@@ -28,12 +28,12 @@ h4 {
 }
 
 .board-container {
-	width: 100%;
+	max-width: 100%;
 	min-width: 1080px;
-	height: 60vh;
+	max-height: 60vh;
 	min-height: 300px;
-	//max-height: 600px;
-	margin-top: 64px;
+	margin: 64px 0;
+	overflow: hidden;
 
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;

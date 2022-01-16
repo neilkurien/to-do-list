@@ -8,19 +8,34 @@ body {
 	background-color: #1c323e;
 	font-family: "Bitter", serif;
 	max-width: 1280px;
+	margin: auto;
 }
 
 h1 {
-	font-size: 1rem;
+	font-family: Bitter;
+	font-size: 52px;
+	font-weight: bold;
+	line-height: 62px;
+	letter-spacing: 0.08em;
+}
+
+h4 {
+	font-family: Bitter;
+	font-size: 24px;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 34px;
+	letter-spacing: 0em;
+	text-align: left;
 }
 
 .board-container {
 	margin: auto;
-	width: 80%;
+	width: 100%;
 	min-width: 1080px;
 	height: 75vh;
 	min-height: 300px;
-	background-color: white;
+	margin-top: 64px;
 
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -29,3 +44,4 @@ h1 {
 
 @import "./task";
 @import "./priority-board";
+@import "./header";

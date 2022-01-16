@@ -28,11 +28,11 @@ h4 {
 }
 
 .board-container {
-	margin: auto;
 	width: 100%;
 	min-width: 1080px;
-	height: 75vh;
+	height: 60vh;
 	min-height: 300px;
+	//max-height: 600px;
 	margin-top: 64px;
 
 	display: grid;

@@ -29,9 +29,12 @@
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 	}
-	img {
-		width: 24px;
-		height: 24px;
+	svg {
+		cursor: pointer;
+		fill: white;
+		&::hover {
+			fill: #ce5959;
+		}
 	}
 }
 
@@ -44,6 +47,12 @@
 	h2 {
 		color: #eb6e6e;
 	}
+	svg {
+		fill: #eb6e6e;
+		&:hover {
+			fill: #ce5959;
+		}
+	}
 }
 
 .Medium {
@@ -55,8 +64,11 @@
 	h2 {
 		color: #eb8c6e;
 	}
-	img {
-		color: #eb8c6e;
+	svg {
+		fill: #eb8c6e;
+		&:hover {
+			fill: #e37957;
+		}
 	}
 }
 
@@ -68,5 +80,11 @@
 	}
 	h2 {
 		color: #f0ba7b;
+	}
+	svg {
+		fill: #f0ba7b;
+		&:hover {
+			fill: #f6aa51;
+		}
 	}
 }

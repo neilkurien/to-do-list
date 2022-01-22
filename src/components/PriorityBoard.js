@@ -24,16 +24,22 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				<div className="separator"></div>
 			</div>
 			<div className="task-container">
-				{tasks.map((task) => (
-					<Task
-						task={task}
-						priority={priority}
-						setTasks={setTasks}
-						tasks={tasks}
-						id={task.id}
-						key={task.id}
-					/>
-				))}
+				{tasks
+					.filter(
+						(task) =>
+							task.priority === `${priority}` &&
+							task.isDone === false
+					)
+					.map((task) => (
+						<Task
+							task={task}
+							priority={priority}
+							setTasks={setTasks}
+							tasks={tasks}
+							id={task.id}
+							key={task.id}
+						/>
+					))}
 			</div>
 		</div>
 	);

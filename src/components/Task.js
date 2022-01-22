@@ -25,48 +25,30 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	};
 
 	return (
-		<>
-			{task.priority === `${priority}` && (
-				<div className="task-wrapper">
-					<div className={`task ${priority}`} id={id}>
-						<div className="align-left">
-							<img
-								src={dragHandle}
-								className="drag-handle"
-								alt=""
-							/>
-							<label>
-								<input
-									type="checkbox"
-									className="to-do-checkbox"
-									checked={task.isDone}
-									id={task.id}
-									onChange={updateTasksHandler}
-								/>
-							</label>
-							<p>{task.taskDetail}</p>
-						</div>
-						<div className="hover-options">
-							<div
-								className={`overflow-gradient ${priority}`}
-							></div>
-							<div className={`hover-options-inner ${priority}`}>
-								<img
-									src={editIcon}
-									className="edit-icon"
-									alt=""
-								/>
-								<img
-									src={deleteIcon}
-									className="delete-icon"
-									alt=""
-								/>
-							</div>
-						</div>
+		<div className="task-wrapper">
+			<div className={`task ${priority}`} id={id}>
+				<div className="align-left">
+					<img src={dragHandle} className="drag-handle" alt="" />
+					<label>
+						<input
+							type="checkbox"
+							className="to-do-checkbox"
+							checked={task.isDone}
+							id={task.id}
+							onChange={updateTasksHandler}
+						/>
+					</label>
+					<p>{task.taskDetail}</p>
+				</div>
+				<div className="hover-options">
+					<div className={`overflow-gradient ${priority}`}></div>
+					<div className={`hover-options-inner ${priority}`}>
+						<img src={editIcon} className="edit-icon" alt="" />
+						<img src={deleteIcon} className="delete-icon" alt="" />
 					</div>
 				</div>
-			)}
-		</>
+			</div>
+		</div>
 	);
 };
 

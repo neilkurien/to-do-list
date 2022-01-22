@@ -26,6 +26,12 @@ const defaultTasks = () => {
 			id: uuidv4(),
 			isDone: false,
 		},
+		{
+			taskDetail: "Second high priority item that takes up a line",
+			priority: "High",
+			id: uuidv4(),
+			isDone: false,
+		},
 	];
 };
 

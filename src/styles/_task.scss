@@ -128,7 +128,8 @@
 
 .drag-handle {
 	margin-right: 12px;
-	cursor: pointer;
+	cursor: move;
+	-webkit-user-drag: none;
 }
 
 .to-do-checkbox {
@@ -137,10 +138,16 @@
 	height: 28px;
 	border: 2px solid white;
 	border-radius: 28px;
-	background-color: rgba(255, 255, 255, 0.5);
 	appearance: none;
 	margin-right: 12px;
 	cursor: pointer;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.25);
+		background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.75 8.75L6.25 12.25L13.25 4.75' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-size: 16px 16px;
+		background-position: center;
+	}
 }
 
 .hover-options {
@@ -152,6 +159,10 @@
 	cursor: pointer;
 	height: 28px;
 	width: 28px;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.25);
+		border-radius: 4px;
+	}
 }
 
 .delete-icon {

@@ -1,3 +1,21 @@
+$red: #eb6e6e;
+$dark-red: #ce5959;
+$red-gradient: linear-gradient(270deg, $dark-red 0%, rgba(206, 89, 89, 0) 100%);
+$orange: #eb8c6e;
+$dark-orange: #e37957;
+$orange-gradient: linear-gradient(
+	270deg,
+	$dark-orange 0%,
+	rgba(227, 121, 87, 0) 100%
+);
+$yellow: #f6aa51;
+$dark-yellow: #e9993b;
+$yellow-gradient: linear-gradient(
+	270deg,
+	$dark-yellow 0%,
+	rgba(233, 153, 59, 0) 100%
+);
+
 * {
 	margin: 0;
 	padding: 0;

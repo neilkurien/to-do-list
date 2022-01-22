@@ -36,17 +36,25 @@
 
 .task.High {
 	border: none;
-	background-color: #eb6e6e;
+	background-color: $red;
 	&:hover {
-		background-color: #ce5959;
+		background-color: $dark-red;
 	}
 }
 
 .task.Medium {
 	border: none;
-	background-color: #eb8c6e;
+	background-color: $orange;
 	&:hover {
-		background-color: #e37957;
+		background-color: $dark-orange;
+	}
+}
+
+.task.Low {
+	border: none;
+	background-color: $yellow;
+	&:hover {
+		background-color: $dark-yellow;
 	}
 }
 
@@ -54,12 +62,50 @@
 	border: none;
 	width: 24px;
 	height: 100%;
-	background: linear-gradient(270deg, #ce5959 0%, rgba(206, 89, 89, 0) 100%);
+	background: $red-gradient;
+}
+
+.overflow-gradient.Medium {
+	border: none;
+	width: 24px;
+	height: 100%;
+	background: $orange-gradient;
+}
+
+.overflow-gradient.Low {
+	border: none;
+	width: 24px;
+	height: 100%;
+	background: $yellow-gradient;
 }
 
 .hover-options-inner {
+	border: none;
 	height: 100%;
-	//background-color: #ce5959;
+	display: flex;
+	align-items: center;
+}
+
+.hover-options-inner.High {
+	background-color: $dark-red;
+	border: none;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.hover-options-inner.Medium {
+	background-color: $dark-orange;
+	border: none;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.hover-options-inner.Low {
+	background-color: $dark-yellow;
+	border: none;
+	height: 100%;
 	display: flex;
 	align-items: center;
 }

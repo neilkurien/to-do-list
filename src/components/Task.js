@@ -8,7 +8,7 @@ import deleteIcon from "../img/delete.svg";
 const Task = () => {
 	return (
 		<div className="task-wrapper">
-			<div className="task Medium">
+			<div className="task Low">
 				<div className="align-left">
 					<img src={dragHandle} className="drag-handle" alt="" />
 					<input type="checkbox" className="to-do-checkbox" />
@@ -18,8 +18,8 @@ const Task = () => {
 					</p>
 				</div>
 				<div className="hover-options">
-					<div className="overflow-gradient Medium"></div>
-					<div className="hover-options-inner">
+					<div className="overflow-gradient Low"></div>
+					<div className="hover-options-inner Low">
 						<img src={editIcon} className="edit-icon" alt="" />
 						<img src={deleteIcon} className="delete-icon" alt="" />
 					</div>

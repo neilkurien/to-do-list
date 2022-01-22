@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //Styles
 import "./styles/app.scss";
@@ -7,14 +7,32 @@ import "./styles/app.scss";
 import PriorityBoard from "./components/PriorityBoard";
 import Header from "./components/Header";
 
+//Import Default Tasks
+import data from "./data";
+
 function App() {
+	//State
+	const [tasks, setTasks] = useState(data());
+
 	return (
 		<>
 			<Header />
 			<div className="board-container">
-				<PriorityBoard priority="High" />
-				<PriorityBoard priority="Medium" />
-				<PriorityBoard priority="Low" />
+				<PriorityBoard
+					priority="High"
+					setTasks={setTasks}
+					tasks={tasks}
+				/>
+				<PriorityBoard
+					priority="Medium"
+					setTasks={setTasks}
+					tasks={tasks}
+				/>
+				<PriorityBoard
+					priority="Low"
+					setTasks={setTasks}
+					tasks={tasks}
+				/>
 			</div>
 		</>
 	);

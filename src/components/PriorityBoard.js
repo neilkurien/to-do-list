@@ -32,7 +32,6 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 						tasks={tasks}
 						id={task.id}
 						key={task.id}
-						isDone={task.isDone}
 					/>
 				))}
 			</div>

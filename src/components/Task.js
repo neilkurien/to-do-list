@@ -5,7 +5,7 @@ import dragHandle from "../img/drag-handle-icon.svg";
 import editIcon from "../img/edit.svg";
 import deleteIcon from "../img/delete.svg";
 
-const Task = ({ priority, task, isDone, tasks, setTasks, id }) => {
+const Task = ({ priority, task, tasks, setTasks, id }) => {
 	//Input Handlers
 	const updateTasksHandler = (e) => {
 		const newTasks = tasks.map((t) => {
@@ -21,7 +21,6 @@ const Task = ({ priority, task, isDone, tasks, setTasks, id }) => {
 				};
 			}
 		});
-		console.log(newTasks[0]);
 		setTasks(newTasks);
 	};
 

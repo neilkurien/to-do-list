@@ -11,16 +11,18 @@ const DoneBoard = ({ tasks, setTasks, priority }) => {
 				<div className="separator"></div>
 			</div>
 			<div className="task-container">
-				{tasks.map((task) => (
-					<Task
-						task={task}
-						priority={priority}
-						setTasks={setTasks}
-						tasks={tasks}
-						id={task.id}
-						key={task.id}
-					/>
-				))}
+				{tasks
+					.filter((task) => task.isDone === true) //filter out all tasks that are incomplete
+					.map((task) => (
+						<Task
+							task={task}
+							priority={priority}
+							setTasks={setTasks}
+							tasks={tasks}
+							id={task.id}
+							key={task.id}
+						/>
+					))}
 			</div>
 		</div>
 	);

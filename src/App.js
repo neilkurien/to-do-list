@@ -15,14 +15,7 @@ function App() {
 	//State
 	const [tasks, setTasks] = useState(data());
 
-	//Filter tasks into Completed and To Do
-	const [completeTasks, toDoTasks] = tasks.reduce(
-		(result, element) => {
-			result[element.isDone ? 0 : 1].push(element);
-			return result;
-		},
-		[[], []]
-	);
+	console.log(tasks);
 
 	return (
 		<>
@@ -31,23 +24,19 @@ function App() {
 				<PriorityBoard
 					priority="High"
 					setTasks={setTasks}
-					tasks={toDoTasks}
+					tasks={tasks}
 				/>
 				<PriorityBoard
 					priority="Medium"
 					setTasks={setTasks}
-					tasks={toDoTasks}
+					tasks={tasks}
 				/>
 				<PriorityBoard
 					priority="Low"
 					setTasks={setTasks}
-					tasks={toDoTasks}
+					tasks={tasks}
 				/>
-				<DoneBoard
-					priority="Done"
-					setTasks={setTasks}
-					tasks={completeTasks}
-				/>
+				<DoneBoard priority="Done" setTasks={setTasks} tasks={tasks} />
 			</div>
 		</>
 	);

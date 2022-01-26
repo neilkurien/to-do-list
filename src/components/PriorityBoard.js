@@ -25,7 +25,12 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 			</div>
 			<div className="task-container">
 				{tasks
-					.filter((task) => task.priority === `${priority}`)
+					.filter(
+						//filter tasks that belong to this priority board, and remove completed tasks
+						(task) =>
+							task.priority === `${priority}` &&
+							task.isDone === false
+					)
 					.map((task) => (
 						<Task
 							task={task}

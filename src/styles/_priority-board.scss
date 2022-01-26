@@ -58,7 +58,7 @@
 }
 
 .High {
-	background-color: #ffecec;
+	background-color: $light-red;
 	border: 4px solid $red;
 	.separator {
 		background-color: $red;
@@ -75,7 +75,7 @@
 }
 
 .Medium {
-	background-color: #ffe8e1;
+	background-color: $light-orange;
 	border: 4px solid $orange;
 	.separator {
 		background-color: $orange;
@@ -92,7 +92,7 @@
 }
 
 .Low {
-	background-color: #fff4e7;
+	background-color: $light-yellow;
 	border: 4px solid $yellow;
 	.separator {
 		background-color: $yellow;
@@ -104,6 +104,23 @@
 		fill: $yellow;
 		&:hover {
 			fill: $dark-yellow;
+		}
+	}
+}
+
+.Done {
+	background-color: $light-green;
+	border: 4px solid $green;
+	.separator {
+		background-color: $green;
+	}
+	h2 {
+		color: $green;
+	}
+	svg {
+		fill: $green;
+		&:hover {
+			fill: $dark-green;
 		}
 	}
 }

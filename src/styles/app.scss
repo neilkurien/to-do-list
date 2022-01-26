@@ -1,6 +1,9 @@
+$light-red: #ffecec;
 $red: #eb6e6e;
 $dark-red: #ce5959;
 $red-gradient: linear-gradient(270deg, $dark-red 0%, rgba(206, 89, 89, 0) 100%);
+
+$light-orange: #ffe8e1;
 $orange: #eb8c6e;
 $dark-orange: #e37957;
 $orange-gradient: linear-gradient(
@@ -8,6 +11,8 @@ $orange-gradient: linear-gradient(
 	$dark-orange 0%,
 	rgba(227, 121, 87, 0) 100%
 );
+
+$light-yellow: #fff4e7;
 $yellow: #f6aa51;
 $dark-yellow: #e9993b;
 $yellow-gradient: linear-gradient(
@@ -15,6 +20,10 @@ $yellow-gradient: linear-gradient(
 	$dark-yellow 0%,
 	rgba(233, 153, 59, 0) 100%
 );
+
+$light-green: #f6fffa;
+$green: #6eeba0;
+$dark-green: #59ce88;
 
 * {
 	margin: 0;

@@ -25,6 +25,9 @@ $light-green: #f6fffa;
 $green: #6eeba0;
 $dark-green: #59ce88;
 
+$light-blue: #2a3e49;
+$dark-blue: #1c323e;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -32,7 +35,7 @@ $dark-green: #59ce88;
 }
 
 body {
-	background-color: #1c323e;
+	background-color: $dark-blue;
 	font-family: "Bitter", serif;
 	max-width: 1280px;
 	margin: auto;
@@ -54,17 +57,78 @@ h4 {
 	line-height: 34px;
 }
 
+button {
+	cursor: pointer;
+
+	background-color: $light-blue;
+	border: 2px solid #6d818c;
+	border-radius: 8px;
+
+	font-family: "Bitter", serif;
+	font-size: 18px;
+	font-weight: medium;
+	color: white;
+
+	&:hover {
+		background-color: #6d818c;
+	}
+}
+
 .board-container {
 	max-width: 100%;
-	min-width: 1080px;
 	max-height: 60vh;
+	min-width: 1080px;
 	min-height: 300px;
 	margin: 64px 0;
 	overflow: visible;
 
+	.priority-board.Done {
+		display: none;
+	}
+}
+
+.priority-board-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 32px;
+	//transition: all 0.5s ease;
+}
+
+.board-container.show-done {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 64px;
+
+	.priority-board-container {
+		width: 66.8%;
+		grid-template-columns: 1fr;
+		column-gap: 64px;
+		margin: 0 auto;
+		position: relative;
+
+		.priority-board.High {
+			position: absolute;
+			z-index: 10;
+			top: -16px;
+			left: -16px;
+		}
+		.priority-board.Medium {
+			position: absolute;
+			z-index: 5;
+			top: 0;
+			left: 0;
+		}
+		.priority-board.Low {
+			position: absolute;
+			z-index: 1;
+			top: 16px;
+			left: 16px;
+		}
+	}
+	.priority-board.Done {
+		display: block;
+		width: 66.8%;
+	}
 }
 
 @import "./task";

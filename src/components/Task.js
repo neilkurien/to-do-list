@@ -6,7 +6,6 @@ import editIcon from "../img/edit.svg";
 import deleteIcon from "../img/delete.svg";
 
 const Task = ({ priority, task, tasks, setTasks, id }) => {
-	console.log(tasks);
 	//Input Handlers
 	const updateTasksHandler = (e) => {
 		const newTasks = tasks.map((t) => {
@@ -22,7 +21,6 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 			}
 		});
 		setTasks(newTasks);
-		console.log(newTasks);
 	};
 
 	return (

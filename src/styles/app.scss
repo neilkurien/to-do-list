@@ -75,35 +75,94 @@ button {
 }
 
 .board-container {
-	max-width: 100%;
-	max-height: 60vh;
-	min-width: 1080px;
-	min-height: 300px;
+	width: 100%;
+	height: 500px;
 	margin: 64px 0;
 	overflow: visible;
 
-	.priority-board.Done {
-		display: none;
-	}
+	//background-color: $green;
+	position: relative;
 }
 
 .priority-board-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	column-gap: 32px;
-	//transition: all 0.5s ease;
+	width: 100%;
+	//background-color: hotpink;
+	height: inherit;
+}
+
+.done-board-container {
+	//background-color: purple;
+	width: 405px;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.priority-board.Done {
+	width: 405px;
+	min-height: inherit;
+	max-height: inherit;
+	display: none;
 }
 
 .board-container.show-done {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	column-gap: 64px;
-
 	.priority-board-container {
-		width: 66.8%;
-		grid-template-columns: 1fr;
-		column-gap: 64px;
-		margin: 0 auto;
+		.priority-board.High {
+			z-index: 10;
+			top: -16px;
+			left: 421px;
+		}
+		.priority-board.Medium {
+			z-index: 5;
+			top: 0;
+			left: 437px;
+		}
+		.priority-board.Low {
+			z-index: 0;
+			top: 16px;
+			left: 453px;
+		}
+	}
+	.priority-board.Done {
+		display: block;
+	}
+}
+
+/* .board-container {
+	.priority-board-container {
+		position: relative;
+		transition: all 0.5s ease;
+
+		.priority-board.High {
+			transition: all 0.5s ease;
+			position: relative;
+			z-index: 10;
+			top: 0;
+			left: 0;
+		}
+		.priority-board.Medium {
+			transition: all 0.5s ease;
+			position: relative;
+			z-index: 5;
+			top: 0;
+			left: 0;
+		}
+		.priority-board.Low {
+			transition: all 0.5s ease;
+			position: relative;
+			z-index: 0;
+			top: 0;
+			left: 0;
+		}
+	}
+	.priority-board.Done {
+		display: none;
+	}
+} */
+
+/* .board-container.show-done {
+	.priority-board-container {
 		position: relative;
 
 		.priority-board.High {
@@ -127,9 +186,8 @@ button {
 	}
 	.priority-board.Done {
 		display: block;
-		width: 66.8%;
 	}
-}
+} */
 
 @import "./task";
 @import "./priority-board";

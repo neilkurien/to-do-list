@@ -1,8 +1,23 @@
 .priority-board {
-	min-height: inherit;
-	max-height: inherit;
-	width: 100%;
+	//min-height: inherit;
+	//max-height: inherit;
+	width: calc(100vw / 3 - 32px);
+	position: absolute;
 	border-radius: 24px;
+	transition: all 0.75s ease;
+}
+
+.priority-board.High {
+	//transform: translateX(calc(-100% - 32px));
+	left: calc(100vw / 3 + 96px);
+}
+
+.priority-board.Medium {
+}
+
+.priority-board.Low {
+	//transform: translateX(calc(100% + 32px));
+	left: calc(100vw / 3 + 96px);
 }
 
 .board-header {

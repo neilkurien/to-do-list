@@ -59,9 +59,9 @@
 	}
 }
 
-.High {
+.priority-board.High {
 	top: 0;
-	left: 0;
+	left: -437px;
 	z-index: 10;
 	background-color: $light-red;
 	border: 4px solid $red;
@@ -79,9 +79,9 @@
 	}
 }
 
-.Medium {
+.priority-board.Medium {
 	top: 0;
-	left: 437px;
+	left: 0px;
 	z-index: 5;
 	background-color: $light-orange;
 	border: 4px solid $orange;
@@ -99,9 +99,9 @@
 	}
 }
 
-.Low {
+.priority-board.Low {
 	top: 0;
-	left: 874px;
+	left: 437px;
 	z-index: 0;
 	background-color: $light-yellow;
 	border: 4px solid $yellow;

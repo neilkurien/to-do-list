@@ -79,53 +79,60 @@ button {
 	height: 500px;
 	margin: 64px 0;
 	overflow: visible;
-
-	//background-color: $green;
-	position: relative;
+	display: flex;
+	transition: all 0.75s ease;
 }
 
 .priority-board-container {
-	width: 100%;
-	//background-color: hotpink;
+	width: 405px;
+	margin: 0 auto;
+	background-color: hotpink;
 	height: inherit;
+	position: relative;
+	left: 216px;
+	transition: all 0.75s ease;
 }
 
 .done-board-container {
 	//background-color: purple;
 	width: 405px;
 	height: inherit;
-	position: absolute;
-	top: 0;
-	right: 0;
 }
 
-.priority-board.Done {
+.done-board-container {
 	width: 405px;
+	right: 0;
+	z-index: -5;
+	margin: 0 auto;
 	min-height: inherit;
 	max-height: inherit;
-	display: none;
+	transform: translateX(100px);
+	opacity: 0;
+	transition: all 0.75s ease;
 }
 
 .board-container.show-done {
 	.priority-board-container {
+		left: 0;
 		.priority-board.High {
 			z-index: 10;
 			top: -16px;
-			left: 421px;
+			left: -16px;
 		}
 		.priority-board.Medium {
 			z-index: 5;
 			top: 0;
-			left: 437px;
+			left: 0;
 		}
 		.priority-board.Low {
 			z-index: 0;
 			top: 16px;
-			left: 453px;
+			left: 16px;
 		}
 	}
-	.priority-board.Done {
-		display: block;
+	.done-board-container {
+		transform: translateX(0);
+		opacity: 1;
 	}
 }
 

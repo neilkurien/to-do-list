@@ -39,7 +39,13 @@ function App() {
 						tasks={tasks}
 					/>
 				</div>
-				<DoneBoard priority="Done" setTasks={setTasks} tasks={tasks} />
+				<div className="done-board-container">
+					<DoneBoard
+						priority="Done"
+						setTasks={setTasks}
+						tasks={tasks}
+					/>
+				</div>
 			</div>
 		</>
 	);

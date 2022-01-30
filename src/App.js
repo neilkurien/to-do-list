@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 //Styles
 import "./styles/app.scss";
@@ -15,13 +15,21 @@ function App() {
 	//State
 	const [tasks, setTasks] = useState(data());
 	const [showDone, setShowDone] = useState(false);
-
-	useEffect(() => {});
+	const [hoverDone, setHoverDone] = useState(false);
 
 	return (
 		<>
-			<Header showDone={showDone} setShowDone={setShowDone} />
-			<div className={`board-container ${showDone ? "show-done" : ""}`}>
+			<Header
+				showDone={showDone}
+				setShowDone={setShowDone}
+				hoverDone={hoverDone}
+				setHoverDone={setHoverDone}
+			/>
+			<div
+				className={`board-container ${showDone ? "show-done" : ""} ${
+					hoverDone ? "hover" : ""
+				}`}
+			>
 				<div className="priority-board-container">
 					<PriorityBoard
 						priority="High"
@@ -39,6 +47,9 @@ function App() {
 						tasks={tasks}
 					/>
 				</div>
+				<div
+					className={`grad-overlay ${hoverDone ? "show" : ""}`}
+				></div>
 				<div className="done-board-container">
 					<DoneBoard
 						priority="Done"

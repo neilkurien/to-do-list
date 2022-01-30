@@ -76,7 +76,9 @@ button {
 
 .board-container {
 	margin-top: 64px;
+	padding: 24px 0;
 	width: 100%;
+	overflow-y: hidden;
 	display: flex;
 	gap: 32px;
 	position: relative;
@@ -93,14 +95,15 @@ button {
 	width: 31.6%;
 	height: 100%;
 	position: absolute;
-	z-index: 1;
+	z-index: 0;
 	right: 0;
 	opacity: 0;
 	transform: translateX(100%);
 	transition: all 0.75s ease;
 }
 
-.board-container.show-done {
+.board-container.show-done,
+.board-container.show-done.hover {
 	.priority-board.High {
 		transform: translate(34%, -3%);
 	}
@@ -114,6 +117,41 @@ button {
 		transform: translate(-40%, 0);
 		opacity: 1;
 	}
+}
+
+.board-container.hover {
+	.priority-board.High {
+		transform: translate(0%, -1.5%);
+	}
+	.priority-board.Medium {
+		transform: translate(-15%, 0);
+	}
+	.priority-board.Low {
+		transform: translate(-30%, 1.5%);
+	}
+	.done-board-container {
+		transform: translate(80%, 0);
+		opacity: 1;
+	}
+}
+
+.grad-overlay {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+	height: 100%;
+	width: 70px;
+	opacity: 0;
+	background: linear-gradient(
+		90deg,
+		rgba(28, 50, 62, 0) 0%,
+		rgba(28, 50, 62, 1) 100%
+	);
+	transition: opacity 0.75s ease;
+}
+
+.grad-overlay.show {
+	opacity: 1;
 }
 
 @import "./task";

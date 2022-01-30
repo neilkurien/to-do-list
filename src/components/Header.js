@@ -2,12 +2,7 @@ import React from "react";
 
 import logoType from "../img/todo-logo.svg";
 
-const Header = ({ showDone, setShowDone }) => {
-	//Handlers
-	const showDoneHandler = () => {
-		setShowDone(!showDone);
-	};
-
+const Header = ({ showDone, setShowDone, hoverDone, setHoverDone }) => {
 	return (
 		<div className="header-container">
 			<div className="header-title">
@@ -21,7 +16,12 @@ const Header = ({ showDone, setShowDone }) => {
 					to-do list.
 				</h4>
 			</div>
-			<button className="show-done-btn" onClick={showDoneHandler}>
+			<button
+				className="show-done-btn"
+				onClick={() => setShowDone(!showDone)}
+				onMouseEnter={() => setHoverDone(true)}
+				onMouseLeave={() => setHoverDone(false)}
+			>
 				Completed Tasks
 			</button>
 		</div>

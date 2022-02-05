@@ -22,6 +22,11 @@ const Header = ({ showDone, setShowDone, hoverDone, setHoverDone }) => {
 				onMouseEnter={() => setHoverDone(true)}
 				onMouseLeave={() => setHoverDone(false)}
 			>
+				<div
+					className={`eye-icon ${showDone ? "fill" : ""} ${
+						hoverDone ? "hover" : ""
+					}`}
+				></div>
 				Completed Tasks
 			</button>
 		</div>

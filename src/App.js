@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //Styles
 import "./styles/app.scss";
@@ -9,13 +9,24 @@ import DoneBoard from "./components/DoneBoard";
 import Header from "./components/Header";
 
 //Import Default Tasks
-import data from "./data";
+import initialData from "./data";
 
 function App() {
+	//Custom hook to check localStorage for past task data
+	const useLocalStorage = (initialState, key) => {
+		const localTasks = localStorage.getItem(key);
+		return localTasks !== null ? JSON.parse(localTasks) : initialState;
+	};
+
 	//State
-	const [tasks, setTasks] = useState(data());
+	const [tasks, setTasks] = useState(useLocalStorage(initialData(), "tasks"));
 	const [showDone, setShowDone] = useState(false);
 	const [hoverDone, setHoverDone] = useState(false);
+
+	//Every time the state of tasks changes, write that change to localStorage
+	useEffect(() => {
+		localStorage.setItem("tasks", JSON.stringify(tasks));
+	}, [tasks]);
 
 	return (
 		<>

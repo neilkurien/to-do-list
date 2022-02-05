@@ -1,7 +1,15 @@
 import React from "react";
 import Task from "./Task";
+import NewTask from "./NewTask";
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
+	//Handlers
+	const newTaskHandler = (e) => {
+		console.log(`clicked ${priority}`);
+		console.log(e.target);
+		//createNewTask( e.target.value, priority);
+	};
+
 	return (
 		<div className={`priority-board ${priority}`}>
 			<div className="board-header">
@@ -9,6 +17,7 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 					<h2>{priority}</h2>
 
 					<svg
+						onClick={newTaskHandler}
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -24,6 +33,14 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				<div className="separator"></div>
 			</div>
 			<div className="task-container">
+				<NewTask
+					task="New"
+					priority={priority}
+					setTasks={setTasks}
+					tasks={tasks}
+					id="1231"
+					key="1231"
+				/>
 				{tasks
 					.filter(
 						//filter tasks that belong to this priority board, and remove completed tasks

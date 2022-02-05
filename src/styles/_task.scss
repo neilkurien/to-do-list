@@ -34,6 +34,11 @@
 	}
 }
 
+label {
+	display: flex;
+	align-items: center;
+}
+
 .task.High {
 	border: none;
 	background-color: $red;
@@ -194,7 +199,8 @@
 }
 
 .edit-icon,
-.delete-icon {
+.delete-icon,
+.tick-icon {
 	cursor: pointer;
 	height: 28px;
 	width: 28px;

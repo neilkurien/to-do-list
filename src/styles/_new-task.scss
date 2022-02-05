@@ -8,7 +8,7 @@
 	border: none !important;
 
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
 
@@ -16,17 +16,19 @@
 }
 
 .new-task-input {
-	background: rgba(255, 255, 255, 0.222);
+	resize: none;
 	border-radius: 4px;
 	color: white;
 	font-family: "Bitter", serif;
 	font-size: 18px;
+	line-height: 140%;
 
 	border: none;
 
 	display: block;
 	padding: 8px 16px;
 	width: 100%;
+	min-height: 68px;
 
 	&:active,
 	&:focus {
@@ -35,28 +37,92 @@
 	}
 }
 
-.new-right-container {
-	border: none;
-	height: 100%;
-	display: flex;
-	align-items: center;
+.new-task-input.High {
+	background: $dark-red;
+}
+.new-task-input.Medium {
+	background: $dark-orange;
 }
 
-.new-right-container.High,
+.new-task-input.Low {
+	background: $dark-yellow;
+}
+
 .new-task.High {
 	background-color: $red;
 }
 
-.new-right-container.Medium,
 .new-task.Medium {
 	background-color: $orange;
 }
 
-.new-right-container.Low,
 .new-task.Low {
 	background-color: $yellow;
 }
 
-.tick-icon {
-	margin-left: 8px;
+.High-button-container,
+.Medium-button-container,
+.Low-button-container {
+	margin-top: 12px;
+	width: 100%;
+	display: flex;
+	gap: 12px;
+	border: none;
+}
+
+.High-primary-button,
+.High-secondary-button,
+.Medium-primary-button,
+.Medium-secondary-button,
+.Low-primary-button,
+.Low-secondary-button {
+	width: 100%;
+	padding: 8px;
+	background-color: none !important;
+	border-radius: 4px;
+}
+
+.High-primary-button {
+	background-color: white;
+	color: $red;
+}
+
+.Medium-primary-button {
+	background-color: white;
+	color: $orange;
+}
+
+.Low-primary-button {
+	background-color: white;
+	color: $yellow;
+}
+
+.High-secondary-button {
+	background-color: $red;
+	color: white;
+	outline: none;
+	border: 1px solid white;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+}
+
+.Medium-secondary-button {
+	background-color: $orange;
+	color: white;
+	outline: none;
+	border: 1px solid white;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+}
+
+.Low-secondary-button {
+	background-color: $yellow;
+	color: white;
+	outline: none;
+	border: 1px solid white;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
 }

@@ -59,14 +59,25 @@ h4 {
 
 button {
 	cursor: pointer;
+	font-family: "Bitter", serif;
+	font-size: 18px;
+	font-weight: medium;
+	border: none;
+	outline: none;
+	&:active,
+	&:focus {
+		border: none;
+		outline: none;
+	}
+}
+
+button.show-done-btn {
+	cursor: pointer;
 
 	background-color: $light-blue;
 	border: 2px solid #6d818c;
 	border-radius: 8px;
 
-	font-family: "Bitter", serif;
-	font-size: 18px;
-	font-weight: medium;
 	color: white;
 
 	&:hover {

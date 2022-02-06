@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
+	//State
+	const [showTaskInput, setShowTaskInput] = useState(false);
+
 	//Handlers
 	const newTaskHandler = (e) => {
-		console.log(`clicked ${priority}`);
-		console.log(e.target);
-		//createNewTask( e.target.value, priority);
+		setShowTaskInput(true);
 	};
 
 	return (
@@ -33,14 +34,14 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				<div className="separator"></div>
 			</div>
 			<div className="task-container">
-				<NewTask
-					task="New"
-					priority={priority}
-					setTasks={setTasks}
-					tasks={tasks}
-					id="1231"
-					key="1231"
-				/>
+				{showTaskInput && (
+					<NewTask
+						priority={priority}
+						setTasks={setTasks}
+						tasks={tasks}
+						setShowTaskInput={setShowTaskInput}
+					/>
+				)}
 				{tasks
 					.filter(
 						//filter tasks that belong to this priority board, and remove completed tasks

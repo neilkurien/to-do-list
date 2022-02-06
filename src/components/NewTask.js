@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import { v4 as uuidv4 } from "uuid";
 
-const NewTask = ({ priority, task, tasks, setTasks, id }) => {
+const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 	//State
 	const [textInput, setTextInput] = useState("");
 	const [isEnabled, setIsEnabled] = useState(false);
@@ -42,12 +42,13 @@ const NewTask = ({ priority, task, tasks, setTasks, id }) => {
 
 	const cancelHandler = () => {
 		clearTextInput();
+		setShowTaskInput(false);
 		//and hide input container
 	};
 
 	return (
-		<div className="task-wrapper">
-			<form className={`new-task ${priority}`} id={id}>
+		<div className={`task-wrapper ${show}`}>
+			<form className={`new-task ${priority}`}>
 				<textarea
 					placeholder="What do you want to do?"
 					value={textInput}

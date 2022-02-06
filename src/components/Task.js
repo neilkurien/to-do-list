@@ -24,18 +24,6 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	};
 
 	const deleteHandler = (e) => {
-		/* const newTasks = tasks.map((t) => {
-			if (e.target.id === t.id) {
-				return {
-					...t,
-					isDone: !t.isDone,
-				};
-			} else {
-				return {
-					...t,
-				};
-			}
-		}); */
 		setTasks(tasks.filter((t) => e.target.id !== t.id));
 	};
 

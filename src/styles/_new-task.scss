@@ -35,6 +35,10 @@
 		border: none;
 		outline: none;
 	}
+	&::placeholder {
+		color: white;
+		opacity: 0.7;
+	}
 }
 
 .new-task-input.High {
@@ -71,10 +75,13 @@
 }
 
 .High-primary-button,
+.High-disabled-button,
 .High-secondary-button,
 .Medium-primary-button,
+.Medium-disabled-button,
 .Medium-secondary-button,
 .Low-primary-button,
+.Low-disabled-button,
 .Low-secondary-button {
 	width: 100%;
 	padding: 8px;
@@ -82,19 +89,43 @@
 	border-radius: 4px;
 }
 
-.High-primary-button {
+.High-primary-button,
+.High-disabled-button,
+.Medium-primary-button,
+.Medium-disabled-button,
+.Low-primary-button,
+.Low-disabled-button {
 	background-color: white;
+}
+
+.High-primary-button {
 	color: $red;
 }
 
+.High-disabled-button {
+	color: $red;
+	opacity: $disabled-opacity;
+	cursor: not-allowed;
+}
+
 .Medium-primary-button {
-	background-color: white;
 	color: $orange;
 }
 
+.Medium-disabled-button {
+	color: $orange;
+	opacity: $disabled-opacity;
+	cursor: not-allowed;
+}
+
 .Low-primary-button {
-	background-color: white;
 	color: $yellow;
+}
+
+.Low-disabled-button {
+	color: $yellow;
+	opacity: $disabled-opacity;
+	cursor: not-allowed;
 }
 
 .High-secondary-button {

@@ -5,9 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 const NewTask = ({ priority, task, tasks, setTasks, id }) => {
 	//State
 	const [textInput, setTextInput] = useState("");
-	const [isEnabled, setIsEnabled] = useState(() => {
-		return textInput !== "";
-	});
+	const [isEnabled, setIsEnabled] = useState(false);
 
 	//Disable buttons if there is no text entered
 	useEffect(() => {
@@ -18,6 +16,10 @@ const NewTask = ({ priority, task, tasks, setTasks, id }) => {
 
 	const updateTextValue = (e) => {
 		setTextInput(e.target.value);
+	};
+
+	const clearTextInput = () => {
+		setTextInput("");
 	};
 
 	const addTaskHandler = (e) => {
@@ -31,13 +33,16 @@ const NewTask = ({ priority, task, tasks, setTasks, id }) => {
 		};
 
 		setTasks([...tasks, newTask]);
-		//clear out textInput
-		setTextInput("");
+		clearTextInput();
 
-		//write cancel function
 		//hide add task input
 		//make sure task is entering from the top
 		//animate entry of task
+	};
+
+	const cancelHandler = () => {
+		clearTextInput();
+		//and hide input container
 	};
 
 	return (
@@ -51,7 +56,10 @@ const NewTask = ({ priority, task, tasks, setTasks, id }) => {
 					className={`new-task-input ${priority}`}
 				/>
 				<div className={`${priority}-button-container`}>
-					<button className={`${priority}-secondary-button`}>
+					<button
+						className={`${priority}-secondary-button`}
+						onClick={cancelHandler}
+					>
 						Cancel
 					</button>
 					<button

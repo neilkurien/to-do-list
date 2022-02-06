@@ -23,6 +23,22 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 		setTasks(newTasks);
 	};
 
+	const deleteHandler = (e) => {
+		/* const newTasks = tasks.map((t) => {
+			if (e.target.id === t.id) {
+				return {
+					...t,
+					isDone: !t.isDone,
+				};
+			} else {
+				return {
+					...t,
+				};
+			}
+		}); */
+		setTasks(tasks.filter((t) => e.target.id !== t.id));
+	};
+
 	return (
 		<div className="task-wrapper">
 			<div className={`task ${priority}`} id={id}>
@@ -43,7 +59,13 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 					<div className={`overflow-gradient ${priority}`}></div>
 					<div className={`hover-options-inner ${priority}`}>
 						<img src={editIcon} className="edit-icon" alt="" />
-						<img src={deleteIcon} className="delete-icon" alt="" />
+						<img
+							src={deleteIcon}
+							onClick={deleteHandler}
+							id={task.id}
+							className="delete-icon"
+							alt=""
+						/>
 					</div>
 				</div>
 			</div>

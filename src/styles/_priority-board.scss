@@ -23,9 +23,9 @@
 .task-container {
 	height: calc(60vh - 72px - 24px);
 	min-height: calc(300px - 72px - 24px);
-	display: flex;
-	flex-direction: column;
-	overflow: scroll;
+	//display: flex;
+	//flex-direction: column;
+	overflow-y: scroll;
 	&:last-child {
 		padding-bottom: 16px;
 	}

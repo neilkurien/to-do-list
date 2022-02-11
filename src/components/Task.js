@@ -10,7 +10,8 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	//State
 	const [showTask, setShowTask] = useState(true);
 
-	const [swipeDirection, setSwipeDirection] = useState({
+	const [whichAction, setWhichAction] = useState({
+		action: "",
 		direction: 0,
 		e: null,
 	});
@@ -21,20 +22,18 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 		}),
 	};
 
-	//UseEffect that triggers when swipeDirection is fired
+	//UseEffect that triggers when whichAction is fired
 	useEffect(() => {
 		//either delete or mark as done
-		if (swipeDirection.e || swipeDirection.direction === 500) {
+		if (whichAction.e || whichAction.action === "delete") {
 			setShowTask(false);
 			setTimeout(() => {
-				setTasks(
-					tasks.filter((t) => swipeDirection.e.target.id !== t.id)
-				);
-			}, 100);
-		} else if (swipeDirection.e || swipeDirection.direction === -500) {
+				setTasks(tasks.filter((t) => whichAction.e.target.id !== t.id));
+			}, 400);
+		} else if (whichAction.e || whichAction.action === "done") {
 			setShowTask(false);
 			const newTasks = tasks.map((t) => {
-				if (swipeDirection.e.target.id === t.id) {
+				if (whichAction.e.target.id === t.id) {
 					return {
 						...t,
 						isDone: !t.isDone,
@@ -47,19 +46,19 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 			});
 			setTasks(newTasks);
 		}
-	}, [swipeDirection]);
+	}, [whichAction]);
 
 	//Input Handlers
 	const updateTasksHandler = (e) => {
-		setSwipeDirection({ direction: -1000, e });
+		setWhichAction({ action: "done", direction: 500, e });
 	};
 
 	const deleteHandler = (e) => {
-		setSwipeDirection({ direction: 1000, e });
+		setWhichAction({ action: "delete", direction: -500, e });
 	};
 
 	return (
-		<div className={`task-wrapper done`}>
+		<div className={`task-wrapper ${whichAction.action}`}>
 			<AnimatePresence>
 				{showTask && (
 					<motion.div
@@ -67,7 +66,8 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 						id={id}
 						variants={swipeVariants}
 						exit="exit"
-						custom={swipeDirection.direction}
+						transition={{ ease: "easeOut" }}
+						custom={whichAction.direction}
 					>
 						<div className="align-left">
 							<img

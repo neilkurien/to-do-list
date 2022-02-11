@@ -1,9 +1,13 @@
 .task-wrapper {
-	//overflow-x: hidden;
+	overflow: hidden;
+	//height: 100px;
 	border-radius: 12px;
 	margin: 0 16px 24px;
 	&:first-child {
 		margin-top: 24px;
+	}
+	&:last-child {
+		margin-bottom: 0;
 	}
 }
 
@@ -18,7 +22,7 @@
 .task {
 	width: 100%;
 	min-height: 60px;
-	height: fit-content;
+	//height: fit-content;
 	padding: 12px;
 
 	border-radius: 12px;

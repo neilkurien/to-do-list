@@ -1,6 +1,5 @@
 .task-wrapper {
 	overflow: hidden;
-	//height: 100px;
 	position: relative;
 	border-radius: 12px;
 	margin: 0 16px 24px;
@@ -12,10 +11,6 @@
 	}
 }
 
-/* .task-wrapper.done {
-	background-color: $green;
-} */
-
 .task-bg.done {
 	background-color: $green;
 	padding: 16px;
@@ -24,10 +19,6 @@
 .task-bg.delete {
 	background-color: $dark-red;
 }
-
-/* .task-wrapper.delete {
-	background-color: $dark-red;
-} */
 
 .task-bg {
 	position: absolute;

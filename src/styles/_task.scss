@@ -1,3 +1,20 @@
+.task-wrapper {
+	//overflow-x: hidden;
+	border-radius: 12px;
+	margin: 0 16px 24px;
+	&:first-child {
+		margin-top: 24px;
+	}
+}
+
+.task-wrapper.done {
+	background-color: $green;
+}
+
+.task-wrapper.delete {
+	background-color: $dark-red;
+}
+
 .task {
 	width: 100%;
 	min-height: 60px;

@@ -19,7 +19,8 @@ function App() {
 	};
 
 	//State
-	const [tasks, setTasks] = useState(useLocalStorage(initialData(), "tasks"));
+	/* const [tasks, setTasks] = useState(useLocalStorage(initialData(), "tasks")); */
+	const [tasks, setTasks] = useState(initialData);
 	const [showDone, setShowDone] = useState(false);
 	const [hoverDone, setHoverDone] = useState(false);
 

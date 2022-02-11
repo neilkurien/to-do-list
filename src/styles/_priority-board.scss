@@ -26,13 +26,6 @@
 	display: flex;
 	flex-direction: column;
 	overflow: scroll;
-}
-
-.task-wrapper {
-	padding: 0 16px 24px;
-	&:first-child {
-		margin-top: 24px;
-	}
 	&:last-child {
 		padding-bottom: 16px;
 	}

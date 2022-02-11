@@ -34,8 +34,8 @@ const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 
 		setTasks([...tasks, newTask]);
 		clearTextInput();
+		setShowTaskInput(false);
 
-		//hide add task input
 		//make sure task is entering from the top
 		//animate entry of task
 	};
@@ -43,12 +43,21 @@ const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 	const cancelHandler = () => {
 		clearTextInput();
 		setShowTaskInput(false);
-		//and hide input container
 	};
+
+	/* const submitOnKeyPress = (e) => {
+		console.log(e.keyCode);
+		if (e.keyCode === 13) {
+			addTaskHandler();
+		}
+	}; */
 
 	return (
 		<div className={`task-wrapper ${show}`}>
-			<form className={`new-task ${priority}`}>
+			<form
+				className={`new-task ${priority}`}
+				//onKeyPress={submitOnKeyPress}
+			>
 				<textarea
 					placeholder="What do you want to do?"
 					value={textInput}

@@ -1,6 +1,7 @@
 .task-wrapper {
 	overflow: hidden;
 	//height: 100px;
+	position: relative;
 	border-radius: 12px;
 	margin: 0 16px 24px;
 	&:first-child {
@@ -11,12 +12,58 @@
 	}
 }
 
-.task-wrapper.done {
+/* .task-wrapper.done {
 	background-color: $green;
+} */
+
+.task-bg.done {
+	background-color: $green;
+	padding: 16px;
 }
 
-.task-wrapper.delete {
+.task-bg.delete {
 	background-color: $dark-red;
+}
+
+/* .task-wrapper.delete {
+	background-color: $dark-red;
+} */
+
+.task-bg {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	z-index: -5;
+	width: 100%;
+	height: 100%;
+}
+
+.bg-text {
+	color: white;
+	font-size: 24px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.bg-icon {
+	position: absolute;
+	img {
+		vertical-align: middle;
+	}
+}
+
+.task-bg.delete {
+	.bg-icon {
+		right: 36px;
+	}
+}
+
+.task-bg.done {
+	.bg-icon {
+		left: 36px;
+	}
 }
 
 .task {

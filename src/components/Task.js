@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dragHandle from "../img/drag-handle-icon.svg";
 import editIcon from "../img/edit.svg";
 import deleteIcon from "../img/delete.svg";
+import doneIcon from "../img/tick.svg";
 
 const Task = ({ priority, task, tasks, setTasks, id }) => {
 	//State
@@ -12,6 +13,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 
 	const [whichAction, setWhichAction] = useState({
 		action: "",
+		message: "",
 		direction: 0,
 		e: null,
 	});
@@ -30,6 +32,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 			setTimeout(() => {
 				setTasks(tasks.filter((t) => whichAction.e.target.id !== t.id));
 			}, 400);
+			//console.log(whichAction.action);
 		} else if (whichAction.e || whichAction.action === "done") {
 			setShowTask(false);
 			const newTasks = tasks.map((t) => {
@@ -50,15 +53,41 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 
 	//Input Handlers
 	const updateTasksHandler = (e) => {
-		setWhichAction({ action: "done", direction: 500, e });
+		setWhichAction({
+			action: "done",
+			message: "Amazing!",
+			direction: 500,
+			e,
+		});
 	};
 
 	const deleteHandler = (e) => {
-		setWhichAction({ action: "delete", direction: -500, e });
+		setWhichAction({
+			action: "delete",
+			message: "Deleted",
+			direction: -500,
+			e,
+		});
 	};
 
 	return (
 		<div className={`task-wrapper ${whichAction.action}`}>
+			{(whichAction.action === "delete" ||
+				whichAction.action === "done") && (
+				<div className={`task-bg ${whichAction.action}`}>
+					<div className="bg-icon">
+						{whichAction.action === "delete" && (
+							<img src={deleteIcon} alt={`delete-icon`} />
+						)}
+						{whichAction.action === "done" && (
+							<img src={doneIcon} alt={`done-icon`} />
+						)}
+					</div>
+					<div className="bg-text">
+						<p>{whichAction.message}</p>
+					</div>
+				</div>
+			)}
 			<AnimatePresence>
 				{showTask && (
 					<motion.div
@@ -66,7 +95,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 						id={id}
 						variants={swipeVariants}
 						exit="exit"
-						transition={{ ease: "easeOut" }}
+						transition={{ ease: "easeOut", duration: 0.6 }}
 						custom={whichAction.direction}
 					>
 						<div className="align-left">

@@ -21,6 +21,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	const swipeVariants = {
 		exit: (custom) => ({
 			x: custom,
+			transition: { duration: 0.6, ease: "easeOut" },
 		}),
 	};
 
@@ -31,7 +32,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 			setShowTask(false);
 			setTimeout(() => {
 				setTasks(tasks.filter((t) => whichAction.e.target.id !== t.id));
-			}, 400);
+			}, 650);
 			//console.log(whichAction.action);
 		} else if (whichAction.e || whichAction.action === "done") {
 			setShowTask(false);
@@ -95,7 +96,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 						id={id}
 						variants={swipeVariants}
 						exit="exit"
-						transition={{ ease: "easeOut", duration: 0.6 }}
+						transition={{ ease: "easeOut" }}
 						custom={whichAction.direction}
 					>
 						<div className="align-left">

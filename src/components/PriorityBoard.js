@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
-import { AnimatePresence, Reorder } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { Droppable } from "react-beautiful-dnd";
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
-	/* const [filteredTasks, setFilteredTasks] = useState(() => {
-		tasks.filter(
-			//filter tasks that belong to this priority board, and remove completed tasks
-			(task) =>
-				task.priority === `${priority}` &&
-				task.isDone === false
-			)
-	}) */
 
 	//Handlers
 	const newTaskHandler = (e) => {
@@ -43,37 +36,43 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-			<div className="task-container">
-				<AnimatePresence>
-					{showTaskInput && (
-						<NewTask
-							priority={priority}
-							setTasks={setTasks}
-							tasks={tasks}
-							setShowTaskInput={setShowTaskInput}
-						/>
-					)}
-				</AnimatePresence>
-				{/* <Reorder.Group axis="y" values={filteredTasks} onReoder={setFilteredTasks}> */}
-				{tasks
-					.filter(
-						//filter tasks that belong to this priority board, and remove completed tasks
-						(task) =>
-							task.priority === `${priority}` &&
-							task.isDone === false
-					)
-					.map((task) => (
-						<Task
-							task={task}
-							priority={priority}
-							setTasks={setTasks}
-							tasks={tasks}
-							id={task.id}
-							key={task.id}
-						/>
-					))}
-				{/* </Reorder.Group> */}
-			</div>
+			<Droppable droppableId={`${priority}-priority-board`}>
+				{(provided) => (
+					<div ref={provided.innerRef} {...provided.droppableProps}>
+						<div className="task-container">
+							<AnimatePresence>
+								{showTaskInput && (
+									<NewTask
+										priority={priority}
+										setTasks={setTasks}
+										tasks={tasks}
+										setShowTaskInput={setShowTaskInput}
+									/>
+								)}
+							</AnimatePresence>
+							{tasks
+								.filter(
+									//filter tasks that belong to this priority board, and remove completed tasks
+									(task) =>
+										task.priority === `${priority}` &&
+										task.isDone === false
+								)
+								.map((task, index) => (
+									<Task
+										task={task}
+										priority={priority}
+										setTasks={setTasks}
+										tasks={tasks}
+										id={task.id}
+										key={task.id}
+										index={index}
+									/>
+								))}
+							{provided.placeholder}
+						</div>
+					</div>
+				)}
+			</Droppable>
 		</div>
 	);
 };

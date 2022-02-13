@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Draggable } from "react-beautiful-dnd";
 
 //Icons
 import dragHandle from "../img/drag-handle-icon.svg";
@@ -7,7 +8,7 @@ import editIcon from "../img/edit.svg";
 import deleteIcon from "../img/delete.svg";
 import doneIcon from "../img/tick.svg";
 
-const Task = ({ priority, task, tasks, setTasks, id }) => {
+const Task = ({ priority, task, tasks, setTasks, id, index }) => {
 	//State
 	const [showTask, setShowTask] = useState(true);
 
@@ -71,72 +72,92 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	};
 
 	return (
-		<div className={`task-wrapper ${whichAction.name}`}>
-			{(whichAction.name === "delete" || whichAction.name === "done") && (
-				<div className={`task-bg ${whichAction.name}`}>
-					<div className="bg-icon">
-						{whichAction.name === "delete" && (
-							<img src={deleteIcon} alt={`delete-icon`} />
+		<Draggable
+			draggableId={task.id}
+			index={index}
+			disableInteractiveElementBlocking
+		>
+			{(provided) => (
+				<div
+					{...provided.draggableProps}
+					{...provided.dragHandleProps}
+					ref={provided.innerRef}
+				>
+					<div className={`task-wrapper ${whichAction.name}`}>
+						{(whichAction.name === "delete" ||
+							whichAction.name === "done") && (
+							<div className={`task-bg ${whichAction.name}`}>
+								<div className="bg-icon">
+									{whichAction.name === "delete" && (
+										<img
+											src={deleteIcon}
+											alt={`delete-icon`}
+										/>
+									)}
+									{whichAction.name === "done" && (
+										<img src={doneIcon} alt={`done-icon`} />
+									)}
+								</div>
+								<div className="bg-text">
+									<p>{whichAction.message}</p>
+								</div>
+							</div>
 						)}
-						{whichAction.name === "done" && (
-							<img src={doneIcon} alt={`done-icon`} />
-						)}
-					</div>
-					<div className="bg-text">
-						<p>{whichAction.message}</p>
+						<AnimatePresence>
+							{showTask && (
+								<motion.div
+									className={`task ${priority}`}
+									id={id}
+									variants={swipeVariants}
+									exit="exit"
+									transition={{ ease: "easeOut" }}
+									custom={whichAction.direction}
+								>
+									<div className="align-left">
+										<img
+											src={dragHandle}
+											className="drag-handle"
+											alt=""
+										/>
+										<label>
+											<input
+												type="checkbox"
+												className="to-do-checkbox"
+												checked={task.isDone}
+												id={task.id}
+												onChange={updateTasksHandler}
+											/>
+										</label>
+										<p>{task.taskDetail}</p>
+									</div>
+									<div className="hover-options">
+										<div
+											className={`overflow-gradient ${priority}`}
+										></div>
+										<div
+											className={`hover-options-inner ${priority}`}
+										>
+											<img
+												src={editIcon}
+												className="edit-icon"
+												alt=""
+											/>
+											<img
+												src={deleteIcon}
+												onClick={deleteHandler}
+												id={task.id}
+												className="delete-icon"
+												alt=""
+											/>
+										</div>
+									</div>
+								</motion.div>
+							)}
+						</AnimatePresence>
 					</div>
 				</div>
 			)}
-			<AnimatePresence>
-				{showTask && (
-					<motion.div
-						className={`task ${priority}`}
-						id={id}
-						variants={swipeVariants}
-						exit="exit"
-						transition={{ ease: "easeOut" }}
-						custom={whichAction.direction}
-					>
-						<div className="align-left">
-							<img
-								src={dragHandle}
-								className="drag-handle"
-								alt=""
-							/>
-							<label>
-								<input
-									type="checkbox"
-									className="to-do-checkbox"
-									checked={task.isDone}
-									id={task.id}
-									onChange={updateTasksHandler}
-								/>
-							</label>
-							<p>{task.taskDetail}</p>
-						</div>
-						<div className="hover-options">
-							<div
-								className={`overflow-gradient ${priority}`}
-							></div>
-							<div className={`hover-options-inner ${priority}`}>
-								<img
-									src={editIcon}
-									className="edit-icon"
-									alt=""
-								/>
-								<img
-									src={deleteIcon}
-									onClick={deleteHandler}
-									id={task.id}
-									className="delete-icon"
-									alt=""
-								/>
-							</div>
-						</div>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</div>
+		</Draggable>
 	);
 };
 

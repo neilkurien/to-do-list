@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import { v4 as uuidv4 } from "uuid";
-import { motion } from "framer-motion";
 
 const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 	//State
@@ -46,37 +45,15 @@ const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 		setShowTaskInput(false);
 	};
 
-	//Animation
-	const newTaskAnim = {
-		hidden: {
-			y: -50,
-			scale: 0.95,
-			opacity: 0,
-			transition: {
-				ease: "easeOut",
-			},
-		},
-		show: {
-			y: 0,
-			scale: 1,
-			opacity: 1,
-			transition: {
-				duration: 0.25,
-				ease: "easeIn",
-			},
-		},
-	};
+	/* const submitOnKeyPress = (e) => {
+		console.log(e.keyCode);
+		if (e.keyCode === 13) {
+			addTaskHandler();
+		}
+	}; */
 
 	return (
-		<motion.div
-			className={`task-wrapper`}
-			//className={`task-wrapper ${show}`}
-			variants={newTaskAnim}
-			initial="hidden"
-			animate="show"
-			exit="hidden"
-			layoutId={`${priority}-new-task`}
-		>
+		<div className={`task-wrapper ${show}`}>
 			<form
 				className={`new-task ${priority}`}
 				//onKeyPress={submitOnKeyPress}
@@ -112,7 +89,7 @@ const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 					</button>
 				</div>
 			</form>
-		</motion.div>
+		</div>
 	);
 };
 

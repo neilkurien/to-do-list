@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
+<<<<<<< HEAD
 import { AnimatePresence, Reorder } from "framer-motion";
 import TestTask from "./TestTask";
+=======
+>>>>>>> parent of 2b97d3e... added anim to input entry and exit
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
+<<<<<<< HEAD
 	const [filteredTasks, setFilteredTasks] = useState(
 		tasks.filter(
 			(task) => task.priority === `${priority}` && task.isDone === false
 		)
 	);
+=======
+>>>>>>> parent of 2b97d3e... added anim to input entry and exit
 
 	//Handlers
 	const newTaskHandler = (e) => {
-		setShowTaskInput(!showTaskInput);
+		setShowTaskInput(true);
 	};
 
 	return (
@@ -26,7 +32,6 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 
 					<svg
 						onClick={newTaskHandler}
-						className={showTaskInput ? "dismiss" : ""}
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -41,6 +46,7 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
+<<<<<<< HEAD
 			<Reorder.Group
 				className="task-container"
 				axis="y"
@@ -61,6 +67,35 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 					/>
 				))}
 			</Reorder.Group>
+=======
+			<div className="task-container">
+				{showTaskInput && (
+					<NewTask
+						priority={priority}
+						setTasks={setTasks}
+						tasks={tasks}
+						setShowTaskInput={setShowTaskInput}
+					/>
+				)}
+				{tasks
+					.filter(
+						//filter tasks that belong to this priority board, and remove completed tasks
+						(task) =>
+							task.priority === `${priority}` &&
+							task.isDone === false
+					)
+					.map((task) => (
+						<Task
+							task={task}
+							priority={priority}
+							setTasks={setTasks}
+							tasks={tasks}
+							id={task.id}
+							key={task.id}
+						/>
+					))}
+			</div>
+>>>>>>> parent of 2b97d3e... added anim to input entry and exit
 		</div>
 	);
 };

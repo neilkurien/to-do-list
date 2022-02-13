@@ -12,7 +12,7 @@ const Task = ({ priority, task, tasks, setTasks, id, item }) => {
 	const [showTask, setShowTask] = useState(true);
 
 	const [whichAction, setWhichAction] = useState({
-		name: "",
+		action: "",
 		message: "",
 		direction: 0,
 		e: null,
@@ -25,15 +25,16 @@ const Task = ({ priority, task, tasks, setTasks, id, item }) => {
 		}),
 	};
 
-	//UseEffect that triggers when whichAction is changed
+	//UseEffect that triggers when whichAction is fired
 	useEffect(() => {
 		//either delete or mark as done
-		if (whichAction.e || whichAction.name === "delete") {
+		if (whichAction.e || whichAction.action === "delete") {
 			setShowTask(false);
 			setTimeout(() => {
 				setTasks(tasks.filter((t) => whichAction.e.target.id !== t.id));
 			}, 650);
-		} else if (whichAction.e || whichAction.name === "done") {
+			//console.log(whichAction.action);
+		} else if (whichAction.e || whichAction.action === "done") {
 			setShowTask(false);
 			const newTasks = tasks.map((t) => {
 				if (whichAction.e.target.id === t.id) {
@@ -54,23 +55,24 @@ const Task = ({ priority, task, tasks, setTasks, id, item }) => {
 	//Input Handlers
 	const updateTasksHandler = (e) => {
 		setWhichAction({
-			name: "done",
+			action: "done",
 			message: "Amazing!",
-			direction: 600,
+			direction: 500,
 			e,
 		});
 	};
 
 	const deleteHandler = (e) => {
 		setWhichAction({
-			name: "delete",
+			action: "delete",
 			message: "Deleted",
-			direction: -600,
+			direction: -500,
 			e,
 		});
 	};
 
 	return (
+<<<<<<< HEAD
 		<Reorder.Item className={`task-wrapper ${whichAction.name}`}>
 			<span>
 				{(whichAction.name === "delete" ||
@@ -83,6 +85,51 @@ const Task = ({ priority, task, tasks, setTasks, id, item }) => {
 							{whichAction.name === "done" && (
 								<img src={doneIcon} alt={`done-icon`} />
 							)}
+=======
+		<div className={`task-wrapper ${whichAction.action}`}>
+			{(whichAction.action === "delete" ||
+				whichAction.action === "done") && (
+				<div className={`task-bg ${whichAction.action}`}>
+					<div className="bg-icon">
+						{whichAction.action === "delete" && (
+							<img src={deleteIcon} alt={`delete-icon`} />
+						)}
+						{whichAction.action === "done" && (
+							<img src={doneIcon} alt={`done-icon`} />
+						)}
+					</div>
+					<div className="bg-text">
+						<p>{whichAction.message}</p>
+					</div>
+				</div>
+			)}
+			<AnimatePresence>
+				{showTask && (
+					<motion.div
+						className={`task ${priority}`}
+						id={id}
+						variants={swipeVariants}
+						exit="exit"
+						transition={{ ease: "easeOut" }}
+						custom={whichAction.direction}
+					>
+						<div className="align-left">
+							<img
+								src={dragHandle}
+								className="drag-handle"
+								alt=""
+							/>
+							<label>
+								<input
+									type="checkbox"
+									className="to-do-checkbox"
+									checked={task.isDone}
+									id={task.id}
+									onChange={updateTasksHandler}
+								/>
+							</label>
+							<p>{task.taskDetail}</p>
+>>>>>>> parent of 2b97d3e... added anim to input entry and exit
 						</div>
 						<div className="bg-text">
 							<p>{whichAction.message}</p>

@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
+import { AnimatePresence, Reorder } from "framer-motion";
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
+	/* const [filteredTasks, setFilteredTasks] = useState(() => {
+		tasks.filter(
+			//filter tasks that belong to this priority board, and remove completed tasks
+			(task) =>
+				task.priority === `${priority}` &&
+				task.isDone === false
+			)
+	}) */
 
 	//Handlers
 	const newTaskHandler = (e) => {
-		setShowTaskInput(true);
+		setShowTaskInput(!showTaskInput);
 	};
 
 	return (
@@ -19,6 +28,7 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 
 					<svg
 						onClick={newTaskHandler}
+						className={showTaskInput ? "dismiss" : ""}
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -34,14 +44,17 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				<div className="separator"></div>
 			</div>
 			<div className="task-container">
-				{showTaskInput && (
-					<NewTask
-						priority={priority}
-						setTasks={setTasks}
-						tasks={tasks}
-						setShowTaskInput={setShowTaskInput}
-					/>
-				)}
+				<AnimatePresence>
+					{showTaskInput && (
+						<NewTask
+							priority={priority}
+							setTasks={setTasks}
+							tasks={tasks}
+							setShowTaskInput={setShowTaskInput}
+						/>
+					)}
+				</AnimatePresence>
+				{/* <Reorder.Group axis="y" values={filteredTasks} onReoder={setFilteredTasks}> */}
 				{tasks
 					.filter(
 						//filter tasks that belong to this priority board, and remove completed tasks
@@ -59,6 +72,7 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 							key={task.id}
 						/>
 					))}
+				{/* </Reorder.Group> */}
 			</div>
 		</div>
 	);

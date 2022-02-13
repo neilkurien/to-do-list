@@ -12,7 +12,7 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	const [showTask, setShowTask] = useState(true);
 
 	const [whichAction, setWhichAction] = useState({
-		action: "",
+		name: "",
 		message: "",
 		direction: 0,
 		e: null,
@@ -25,16 +25,15 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 		}),
 	};
 
-	//UseEffect that triggers when whichAction is fired
+	//UseEffect that triggers when whichAction is changed
 	useEffect(() => {
 		//either delete or mark as done
-		if (whichAction.e || whichAction.action === "delete") {
+		if (whichAction.e || whichAction.name === "delete") {
 			setShowTask(false);
 			setTimeout(() => {
 				setTasks(tasks.filter((t) => whichAction.e.target.id !== t.id));
 			}, 650);
-			//console.log(whichAction.action);
-		} else if (whichAction.e || whichAction.action === "done") {
+		} else if (whichAction.e || whichAction.name === "done") {
 			setShowTask(false);
 			const newTasks = tasks.map((t) => {
 				if (whichAction.e.target.id === t.id) {
@@ -55,32 +54,31 @@ const Task = ({ priority, task, tasks, setTasks, id }) => {
 	//Input Handlers
 	const updateTasksHandler = (e) => {
 		setWhichAction({
-			action: "done",
+			name: "done",
 			message: "Amazing!",
-			direction: 500,
+			direction: 600,
 			e,
 		});
 	};
 
 	const deleteHandler = (e) => {
 		setWhichAction({
-			action: "delete",
+			name: "delete",
 			message: "Deleted",
-			direction: -500,
+			direction: -600,
 			e,
 		});
 	};
 
 	return (
-		<div className={`task-wrapper ${whichAction.action}`}>
-			{(whichAction.action === "delete" ||
-				whichAction.action === "done") && (
-				<div className={`task-bg ${whichAction.action}`}>
+		<div className={`task-wrapper ${whichAction.name}`}>
+			{(whichAction.name === "delete" || whichAction.name === "done") && (
+				<div className={`task-bg ${whichAction.name}`}>
 					<div className="bg-icon">
-						{whichAction.action === "delete" && (
+						{whichAction.name === "delete" && (
 							<img src={deleteIcon} alt={`delete-icon`} />
 						)}
-						{whichAction.action === "done" && (
+						{whichAction.name === "done" && (
 							<img src={doneIcon} alt={`done-icon`} />
 						)}
 					</div>

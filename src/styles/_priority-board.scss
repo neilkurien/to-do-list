@@ -49,6 +49,7 @@
 		&::hover {
 			fill: $dark-red;
 		}
+		transition: transform 0.1s ease-in;
 	}
 }
 
@@ -69,6 +70,10 @@
 			fill: $dark-red;
 		}
 	}
+}
+
+svg.dismiss {
+	transform: rotate(45deg);
 }
 
 .Medium {

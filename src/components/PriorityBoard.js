@@ -1,27 +1,23 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
-<<<<<<< HEAD
 import { AnimatePresence, Reorder } from "framer-motion";
-import TestTask from "./TestTask";
-=======
->>>>>>> parent of 2b97d3e... added anim to input entry and exit
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
-<<<<<<< HEAD
-	const [filteredTasks, setFilteredTasks] = useState(
+	/* const [filteredTasks, setFilteredTasks] = useState(() => {
 		tasks.filter(
-			(task) => task.priority === `${priority}` && task.isDone === false
-		)
-	);
-=======
->>>>>>> parent of 2b97d3e... added anim to input entry and exit
+			//filter tasks that belong to this priority board, and remove completed tasks
+			(task) =>
+				task.priority === `${priority}` &&
+				task.isDone === false
+			)
+	}) */
 
 	//Handlers
 	const newTaskHandler = (e) => {
-		setShowTaskInput(true);
+		setShowTaskInput(!showTaskInput);
 	};
 
 	return (
@@ -32,6 +28,7 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 
 					<svg
 						onClick={newTaskHandler}
+						className={showTaskInput ? "dismiss" : ""}
 						width="24"
 						height="24"
 						viewBox="0 0 24 24"
@@ -46,37 +43,18 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-<<<<<<< HEAD
-			<Reorder.Group
-				className="task-container"
-				axis="y"
-				onReoder={setFilteredTasks}
-				values={filteredTasks}
-				style={{ overflowY: "scroll", height: "100px" }}
-				layoutScroll
-			>
-				{filteredTasks.map((task) => (
-					<TestTask
-						key={task.id}
-						item={task}
-						task={task}
-						priority={priority}
-						setTasks={setTasks}
-						tasks={tasks}
-						id={task.id}
-					/>
-				))}
-			</Reorder.Group>
-=======
 			<div className="task-container">
-				{showTaskInput && (
-					<NewTask
-						priority={priority}
-						setTasks={setTasks}
-						tasks={tasks}
-						setShowTaskInput={setShowTaskInput}
-					/>
-				)}
+				<AnimatePresence>
+					{showTaskInput && (
+						<NewTask
+							priority={priority}
+							setTasks={setTasks}
+							tasks={tasks}
+							setShowTaskInput={setShowTaskInput}
+						/>
+					)}
+				</AnimatePresence>
+				{/* <Reorder.Group axis="y" values={filteredTasks} onReoder={setFilteredTasks}> */}
 				{tasks
 					.filter(
 						//filter tasks that belong to this priority board, and remove completed tasks
@@ -94,8 +72,8 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 							key={task.id}
 						/>
 					))}
+				{/* </Reorder.Group> */}
 			</div>
->>>>>>> parent of 2b97d3e... added anim to input entry and exit
 		</div>
 	);
 };

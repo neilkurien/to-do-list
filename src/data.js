@@ -21,6 +21,12 @@ const defaultTasks = () => {
 			isDone: false,
 		},
 		{
+			taskDetail: "Medium priority item that takes up a line",
+			priority: "Medium",
+			id: uuidv4(),
+			isDone: false,
+		},
+		{
 			taskDetail: "Low priority item that takes up a line",
 			priority: "Low",
 			id: uuidv4(),

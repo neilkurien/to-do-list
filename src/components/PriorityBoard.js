@@ -2,18 +2,16 @@ import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
 import { AnimatePresence, Reorder } from "framer-motion";
+import TestTask from "./TestTask";
 
 const PriorityBoard = ({ tasks, priority, setTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
-	/* const [filteredTasks, setFilteredTasks] = useState(() => {
+	const [filteredTasks, setFilteredTasks] = useState(
 		tasks.filter(
-			//filter tasks that belong to this priority board, and remove completed tasks
-			(task) =>
-				task.priority === `${priority}` &&
-				task.isDone === false
-			)
-	}) */
+			(task) => task.priority === `${priority}` && task.isDone === false
+		)
+	);
 
 	//Handlers
 	const newTaskHandler = (e) => {
@@ -43,37 +41,26 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-			<div className="task-container">
-				<AnimatePresence>
-					{showTaskInput && (
-						<NewTask
-							priority={priority}
-							setTasks={setTasks}
-							tasks={tasks}
-							setShowTaskInput={setShowTaskInput}
-						/>
-					)}
-				</AnimatePresence>
-				{/* <Reorder.Group axis="y" values={filteredTasks} onReoder={setFilteredTasks}> */}
-				{tasks
-					.filter(
-						//filter tasks that belong to this priority board, and remove completed tasks
-						(task) =>
-							task.priority === `${priority}` &&
-							task.isDone === false
-					)
-					.map((task) => (
-						<Task
-							task={task}
-							priority={priority}
-							setTasks={setTasks}
-							tasks={tasks}
-							id={task.id}
-							key={task.id}
-						/>
-					))}
-				{/* </Reorder.Group> */}
-			</div>
+			<Reorder.Group
+				className="task-container"
+				axis="y"
+				onReoder={setFilteredTasks}
+				values={filteredTasks}
+				style={{ overflowY: "scroll", height: "100px" }}
+				layoutScroll
+			>
+				{filteredTasks.map((task) => (
+					<TestTask
+						key={task.id}
+						item={task}
+						task={task}
+						priority={priority}
+						setTasks={setTasks}
+						tasks={tasks}
+						id={task.id}
+					/>
+				))}
+			</Reorder.Group>
 		</div>
 	);
 };

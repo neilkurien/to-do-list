@@ -46,34 +46,16 @@ function App() {
 			return;
 		}
 
-		const destinationPriorityBoard = destination.droppableId;
-		const sourcePriorityBoard = source.droppableId;
+		const destinationPriority = destination.droppableId.split("-", 1)[0];
+
 		//create new state with updated values
 		const newTasks = tasks.map((t) => {
 			if (draggableId === t.id) {
 				//change priority based on where the draggable is dropped
-				if (destinationPriorityBoard === "High-priority-board") {
-					return {
-						...t,
-						priority: "High",
-					};
-				} else if (
-					destinationPriorityBoard === "Medium-priority-board"
-				) {
-					return {
-						...t,
-						priority: "Medium",
-					};
-				} else if (destinationPriorityBoard === "Low-priority-board") {
-					return {
-						...t,
-						priority: "Low",
-					};
-				} else {
-					return {
-						...t,
-					};
-				}
+				return {
+					...t,
+					priority: destinationPriority,
+				};
 			} else {
 				return {
 					...t,

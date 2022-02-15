@@ -27,6 +27,7 @@ const DoneBoard = ({ tasks, setTasks, priority }) => {
 										key={task.id}
 									/>
 								))}
+							{provided.placeholder}
 						</div>
 					</div>
 				)}

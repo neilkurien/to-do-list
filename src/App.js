@@ -33,10 +33,12 @@ function App() {
 	const onDragEnd = (result) => {
 		const { destination, source, draggableId } = result;
 		console.log(result);
+		//if it is not dragged into a droppable
 		if (!destination) {
 			return;
 		}
 
+		//if it is not moved from current position
 		if (
 			destination.droppableId === source.droppableId &&
 			destination.index === source.index
@@ -44,8 +46,41 @@ function App() {
 			return;
 		}
 
+		const destinationPriorityBoard = destination.droppableId;
 		const sourcePriorityBoard = source.droppableId;
-		//const newTaskIds =
+		//create new state with updated values
+		const newTasks = tasks.map((t) => {
+			if (draggableId === t.id) {
+				//change priority based on where the draggable is dropped
+				if (destinationPriorityBoard === "High-priority-board") {
+					return {
+						...t,
+						priority: "High",
+					};
+				} else if (
+					destinationPriorityBoard === "Medium-priority-board"
+				) {
+					return {
+						...t,
+						priority: "Medium",
+					};
+				} else if (destinationPriorityBoard === "Low-priority-board") {
+					return {
+						...t,
+						priority: "Low",
+					};
+				} else {
+					return {
+						...t,
+					};
+				}
+			} else {
+				return {
+					...t,
+				};
+			}
+		});
+		setTasks(newTasks);
 	};
 
 	return (

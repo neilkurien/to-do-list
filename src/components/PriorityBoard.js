@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import Task from "./Task";
 import NewTask from "./NewTask";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Droppable } from "react-beautiful-dnd";
 
-const PriorityBoard = ({ tasks, priority, setTasks }) => {
+const PriorityBoard = ({ tasks, priority, setTasks, sortedTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
+
+	console.log("PBoard");
+	console.log(tasks);
+	console.log(sortedTasks);
+
+	const sortedBoardTasks = sortedTasks.map((taskID) => tasks[taskID]);
+	console.log(`sortedBoardTasks Object`);
+	console.log(sortedBoardTasks);
 
 	//Handlers
 	const newTaskHandler = (e) => {
@@ -39,7 +47,10 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 			<Droppable droppableId={`${priority}-priority-board`}>
 				{(provided) => (
 					<div ref={provided.innerRef} {...provided.droppableProps}>
-						<div className="task-container">
+						<motion.div
+							className="task-container"
+							transition={{ staggerChildren: 0.2 }}
+						>
 							<AnimatePresence>
 								{showTaskInput && (
 									<NewTask
@@ -50,26 +61,19 @@ const PriorityBoard = ({ tasks, priority, setTasks }) => {
 									/>
 								)}
 							</AnimatePresence>
-							{tasks
-								.filter(
-									//filter tasks that belong to this priority board, and remove completed tasks
-									(task) =>
-										task.priority === `${priority}` &&
-										task.isDone === false
-								)
-								.map((task, index) => (
-									<Task
-										task={task}
-										priority={priority}
-										setTasks={setTasks}
-										tasks={tasks}
-										id={task.id}
-										key={task.id}
-										index={index}
-									/>
-								))}
+							{sortedBoardTasks.reverse().map((task, index) => (
+								<Task
+									task={task}
+									priority={priority}
+									setTasks={setTasks}
+									tasks={tasks}
+									id={task.id}
+									key={task.id}
+									index={index}
+								/>
+							))}
 							{provided.placeholder}
-						</div>
+						</motion.div>
 					</div>
 				)}
 			</Droppable>

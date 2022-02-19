@@ -11,6 +11,7 @@ import Header from "./components/Header";
 
 //Import Default Tasks
 import initialData from "./data";
+import initialData2 from "./data2";
 
 function App() {
 	//Custom hook to check localStorage for past task data
@@ -21,15 +22,37 @@ function App() {
 
 	//State
 	/* const [tasks, setTasks] = useState(useLocalStorage(initialData(), "tasks")); */
-	const [tasks, setTasks] = useState(initialData);
+	const [tasks, setTasks] = useState(initialData2.tasks);
 	const [showDone, setShowDone] = useState(false);
 	const [hoverDone, setHoverDone] = useState(false);
+
+	const [sortingOrder, setSortingOrder] = useState(initialData2.sortingOrder);
+
+	console.log(tasks);
+	console.log(initialData2.sortingOrder.high);
+
+	/* const highPriority = () => {
+		return [
+			tasks
+				.filter(
+					(task) => task.priority === "High" && task.isDone === false
+				)
+				.sort((a, b) => a.index - b.index),
+		];
+	}; */
+
+	/* console.log(tasks);
+	const newNew = Array.from(tasks);
+	console.log(newNew);
+	newNew.splice(3, 0, newTask2);
+	console.log(newNew); */
 
 	//Every time the state of tasks changes, write that change to localStorage
 	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}, [tasks]);
 
+	//reorder function triggered on drop
 	const onDragEnd = (result) => {
 		const { destination, source, draggableId } = result;
 		console.log(result);
@@ -84,18 +107,21 @@ function App() {
 							priority="High"
 							setTasks={setTasks}
 							tasks={tasks}
+							sortedTasks={sortingOrder.high}
 							key={1}
 						/>
 						<PriorityBoard
 							priority="Medium"
 							setTasks={setTasks}
 							tasks={tasks}
+							sortedTasks={sortingOrder.medium}
 							key={2}
 						/>
 						<PriorityBoard
 							priority="Low"
 							setTasks={setTasks}
 							tasks={tasks}
+							sortedTasks={sortingOrder.low}
 							key={3}
 						/>
 					</div>
@@ -107,6 +133,7 @@ function App() {
 							priority="Done"
 							setTasks={setTasks}
 							tasks={tasks}
+							sortedTasks={sortingOrder.done}
 							key={4}
 						/>
 					</div>

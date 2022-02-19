@@ -2,7 +2,10 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 
-const DoneBoard = ({ tasks, setTasks, priority }) => {
+const DoneBoard = ({ tasks, setTasks, priority, sortedTasks }) => {
+	//Sort board
+	const sortedBoardTasks = sortedTasks.map((taskID) => tasks[taskID]);
+
 	return (
 		<div className={`priority-board Done`}>
 			<div className="board-header">
@@ -15,18 +18,16 @@ const DoneBoard = ({ tasks, setTasks, priority }) => {
 				{(provided) => (
 					<div ref={provided.innerRef} {...provided.droppableProps}>
 						<div className="task-container">
-							{tasks
-								.filter((task) => task.isDone === true) //filter out all tasks that are incomplete
-								.map((task) => (
-									<Task
-										task={task}
-										priority={priority}
-										setTasks={setTasks}
-										tasks={tasks}
-										id={task.id}
-										key={task.id}
-									/>
-								))}
+							{sortedBoardTasks.map((task) => (
+								<Task
+									task={task}
+									priority={priority}
+									setTasks={setTasks}
+									tasks={tasks}
+									id={task.id}
+									key={task.id}
+								/>
+							))}
 							{provided.placeholder}
 						</div>
 					</div>

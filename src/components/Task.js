@@ -20,6 +20,14 @@ const Task = ({ priority, task, tasks, setTasks, id, index }) => {
 	});
 
 	const swipeVariants = {
+		hidden: {
+			y: -100,
+			opacity: 0,
+		},
+		show: {
+			y: 0,
+			opacity: 1,
+		},
 		exit: (custom) => ({
 			x: custom,
 			transition: { duration: 0.6, ease: "easeOut" },
@@ -103,14 +111,16 @@ const Task = ({ priority, task, tasks, setTasks, id, index }) => {
 								</div>
 							</div>
 						)}
-						<AnimatePresence>
+						<AnimatePresence exitBeforeEnter>
 							{showTask && (
 								<motion.div
 									className={`task ${priority}`}
 									id={id}
 									variants={swipeVariants}
 									exit="exit"
-									transition={{ ease: "easeOut" }}
+									transition={{
+										ease: "easeOut",
+									}}
 									custom={whichAction.direction}
 								>
 									<div className="align-left">

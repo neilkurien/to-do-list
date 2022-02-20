@@ -1,8 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 
+const convertArrayToObject = (array, key) =>
+	array.reduce((acc, curr) => {
+		acc[curr[key]] = curr;
+		return acc;
+	}, {});
+
 const defaultTasks = () => {
-	return [
-		/* {
+	return convertArrayToObject(
+		[
+			/* {
 			high: [
 				{
 					taskDetail: "High priority item that takes up a line",
@@ -46,7 +53,7 @@ const defaultTasks = () => {
 				},
 			],
 		}, */
-		/* {
+			/* {
 			priority: "High",
 			tasks: [
 				{
@@ -63,7 +70,7 @@ const defaultTasks = () => {
 				},
 			],
 		}, */
-		/* {
+			/* {
 			priority: "Medium",
 			tasks: [
 				{
@@ -93,72 +100,70 @@ const defaultTasks = () => {
 				},
 			],
 		}, */
-		{
-			taskDetail: "1 Medium priority item that takes up a line",
-			priority: "Medium",
-			id: uuidv4(),
-			isDone: false,
-			index: 2,
-		},
-		{
-			taskDetail: "2 Medium priority item that takes up a line",
-			priority: "Medium",
-			id: uuidv4(),
-			isDone: false,
-			index: 1,
-		},
+			{
+				taskDetail: "1 Medium priority item that takes up a line",
+				priority: "Medium",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "2 Medium priority item that takes up a line",
+				priority: "Medium",
+				id: uuidv4(),
+				isDone: false,
+			},
 
-		{
-			taskDetail: "3 Medium priority item that takes up a line",
-			priority: "Medium",
-			id: uuidv4(),
-			isDone: true,
-			index: 4,
-		},
-		{
-			taskDetail: "4 Medium priority item that takes up a line",
-			priority: "Medium",
-			id: uuidv4(),
-			isDone: false,
-			index: 6,
-		},
-		{
-			taskDetail: "1 Low priority item that takes up a line",
-			priority: "Low",
-			id: uuidv4(),
-			isDone: false,
-		},
-		{
-			taskDetail: "1 Second high priority item that takes up a line",
-			priority: "High",
-			id: uuidv4(),
-			isDone: false,
-		},
-		{
-			taskDetail: "2 Second high priority item that takes up a line",
-			priority: "High",
-			id: uuidv4(),
-			isDone: false,
-		},
-		{
-			taskDetail: "3 Second high priority item that takes up a line",
-			priority: "High",
-			id: uuidv4(),
-			isDone: false,
-		},
-		{
-			taskDetail: "4 Second high priority item that takes up a line",
-			priority: "High",
-			id: uuidv4(),
-			isDone: false,
-		},
-		{
-			taskDetail: "5 Second high priority item that takes up a line",
-			priority: "High",
-			id: uuidv4(),
-			isDone: false,
-		},
-	];
+			{
+				taskDetail: "3 Medium priority item that takes up a line",
+				priority: "Medium",
+				id: uuidv4(),
+				isDone: true,
+			},
+			{
+				taskDetail: "4 Medium priority item that takes up a line",
+				priority: "Medium",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "1 Low priority item that takes up a line",
+				priority: "Low",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "1 Second high priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "2 Second high priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "3 Second high priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "4 Second high priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "5 Second high priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+		],
+		"id"
+	);
 };
 
 export default defaultTasks;

@@ -4,7 +4,7 @@ import Task from "./Task";
 
 const DoneBoard = ({ tasks, setTasks, priority, sortedTasks }) => {
 	//Sort board
-	const sortedBoardTasks = sortedTasks.map((taskID) => tasks[taskID]);
+	/* const sortedBoardTasks = sortedTasks.map((taskID) => tasks[taskID]); */
 
 	return (
 		<div className={`priority-board Done`}>
@@ -18,7 +18,7 @@ const DoneBoard = ({ tasks, setTasks, priority, sortedTasks }) => {
 				{(provided) => (
 					<div ref={provided.innerRef} {...provided.droppableProps}>
 						<div className="task-container">
-							{sortedBoardTasks.map((task) => (
+							{sortedTasks.map((task, index) => (
 								<Task
 									task={task}
 									priority={priority}
@@ -26,6 +26,7 @@ const DoneBoard = ({ tasks, setTasks, priority, sortedTasks }) => {
 									tasks={tasks}
 									id={task.id}
 									key={task.id}
+									index={index}
 								/>
 							))}
 							{provided.placeholder}

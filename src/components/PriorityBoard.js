@@ -8,13 +8,10 @@ const PriorityBoard = ({ tasks, priority, setTasks, sortedTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
 
-	console.log("PBoard");
-	console.log(tasks);
-	console.log(sortedTasks);
+	/* const sortedBoardTasks = sortedTasks.priority.map((task) => tasks[taskID]); */
 
-	const sortedBoardTasks = sortedTasks.map((taskID) => tasks[taskID]);
-	console.log(`sortedBoardTasks Object`);
-	console.log(sortedBoardTasks);
+	console.log(`sortedTasks`);
+	console.log(sortedTasks);
 
 	//Handlers
 	const newTaskHandler = (e) => {
@@ -61,7 +58,7 @@ const PriorityBoard = ({ tasks, priority, setTasks, sortedTasks }) => {
 									/>
 								)}
 							</AnimatePresence>
-							{sortedBoardTasks.reverse().map((task, index) => (
+							{sortedTasks.reverse().map((task, index) => (
 								<Task
 									task={task}
 									priority={priority}

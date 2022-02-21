@@ -4,14 +4,9 @@ import NewTask from "./NewTask";
 import { motion, AnimatePresence } from "framer-motion";
 import { Droppable } from "react-beautiful-dnd";
 
-const PriorityBoard = ({ tasks, priority, setTasks, sortedTasks }) => {
+const PriorityBoard = ({ tasks, priority, setTasks }) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
-
-	/* const sortedBoardTasks = sortedTasks.priority.map((task) => tasks[taskID]); */
-
-	console.log(`sortedTasks`);
-	console.log(sortedTasks);
 
 	//Handlers
 	const newTaskHandler = (e) => {
@@ -41,7 +36,7 @@ const PriorityBoard = ({ tasks, priority, setTasks, sortedTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-			<Droppable droppableId={`${priority}-priority-board`}>
+			<Droppable droppableId={`${priority.toLowerCase()}`}>
 				{(provided) => (
 					<div ref={provided.innerRef} {...provided.droppableProps}>
 						<motion.div
@@ -58,7 +53,7 @@ const PriorityBoard = ({ tasks, priority, setTasks, sortedTasks }) => {
 									/>
 								)}
 							</AnimatePresence>
-							{sortedTasks.reverse().map((task, index) => (
+							{tasks.reverse().map((task, index) => (
 								<Task
 									task={task}
 									priority={priority}

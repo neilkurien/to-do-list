@@ -2,10 +2,7 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import Task from "./Task";
 
-const DoneBoard = ({ tasks, setTasks, priority, sortedTasks }) => {
-	//Sort board
-	/* const sortedBoardTasks = sortedTasks.map((taskID) => tasks[taskID]); */
-
+const DoneBoard = ({ tasks, setTasks, priority }) => {
 	return (
 		<div className={`priority-board Done`}>
 			<div className="board-header">
@@ -14,11 +11,11 @@ const DoneBoard = ({ tasks, setTasks, priority, sortedTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-			<Droppable droppableId={`${priority}-priority-board`}>
+			<Droppable droppableId={`${priority.toLowerCase()}`}>
 				{(provided) => (
 					<div ref={provided.innerRef} {...provided.droppableProps}>
 						<div className="task-container">
-							{sortedTasks.map((task, index) => (
+							{tasks.map((task, index) => (
 								<Task
 									task={task}
 									priority={priority}

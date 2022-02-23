@@ -90,18 +90,21 @@ function App() {
 							priority="High"
 							setTasks={setTasks}
 							tasks={tasks.high}
+							allTasks={tasks}
 							key={1}
 						/>
 						<PriorityBoard
 							priority="Medium"
 							setTasks={setTasks}
 							tasks={tasks.medium}
+							allTasks={tasks}
 							key={2}
 						/>
 						<PriorityBoard
 							priority="Low"
 							setTasks={setTasks}
 							tasks={tasks.low}
+							allTasks={tasks}
 							key={3}
 						/>
 					</div>
@@ -113,6 +116,7 @@ function App() {
 							priority="Done"
 							setTasks={setTasks}
 							tasks={tasks.done}
+							allTasks={tasks}
 							key={4}
 						/>
 					</div>

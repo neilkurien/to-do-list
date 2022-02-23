@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Draggable } from "react-beautiful-dnd";
 
+//Utils
+import { removeFromList } from "../utils";
+
 //Icons
 import dragHandle from "../img/drag-handle-icon.svg";
 import editIcon from "../img/edit.svg";
 import deleteIcon from "../img/delete.svg";
 import doneIcon from "../img/tick.svg";
 
-const Task = ({ priority, task, tasks, setTasks, id, index }) => {
+const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 	//State
 	const [showTask, setShowTask] = useState(true);
 
@@ -40,7 +43,19 @@ const Task = ({ priority, task, tasks, setTasks, id, index }) => {
 		if (whichAction.e || whichAction.name === "delete") {
 			setShowTask(false);
 			setTimeout(() => {
-				setTasks(tasks.filter((t) => whichAction.e.target.id !== t.id));
+				const listCopy = { ...allTasks };
+				const thisPriorityList = listCopy[priority.toLowerCase()];
+				const taskIndex = thisPriorityList.findIndex(
+					(task) => task.id === whichAction.e.target.id
+				);
+
+				const [removedElement, resultList] = removeFromList(
+					thisPriorityList,
+					taskIndex
+				);
+				listCopy[priority.toLowerCase()] = resultList;
+
+				setTasks(listCopy);
 			}, 650);
 		} else if (whichAction.e || whichAction.name === "done") {
 			setShowTask(false);

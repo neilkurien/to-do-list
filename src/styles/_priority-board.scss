@@ -54,7 +54,6 @@
 
 .High {
 	position: relative;
-	z-index: 10;
 	background-color: $light-red;
 	border: 4px solid $red;
 	.separator {
@@ -73,7 +72,6 @@
 
 .Medium {
 	position: relative;
-	z-index: 3;
 	background-color: $light-orange;
 	border: 4px solid $orange;
 	.separator {
@@ -92,7 +90,6 @@
 
 .Low {
 	position: relative;
-	z-index: 2;
 	background-color: $light-yellow;
 	border: 4px solid $yellow;
 	.separator {

@@ -36,41 +36,43 @@ const PriorityBoard = ({ tasks, priority, setTasks, allTasks }) => {
 				</div>
 				<div className="separator"></div>
 			</div>
-			<Droppable droppableId={`${priority.toLowerCase()}`}>
-				{(provided) => (
-					<div ref={provided.innerRef} {...provided.droppableProps}>
-						<motion.div
-							className="task-container"
-							transition={{ staggerChildren: 0.2 }}
+			<div className="task-container">
+				<Droppable droppableId={`${priority.toLowerCase()}`}>
+					{(provided) => (
+						<div
+							ref={provided.innerRef}
+							{...provided.droppableProps}
 						>
-							<AnimatePresence>
-								{showTaskInput && (
-									<NewTask
+							<motion.div transition={{ staggerChildren: 0.2 }}>
+								<AnimatePresence>
+									{showTaskInput && (
+										<NewTask
+											priority={priority}
+											setTasks={setTasks}
+											tasks={tasks}
+											allTasks={allTasks}
+											setShowTaskInput={setShowTaskInput}
+										/>
+									)}
+								</AnimatePresence>
+								{tasks.reverse().map((task, index) => (
+									<Task
+										task={task}
 										priority={priority}
 										setTasks={setTasks}
 										tasks={tasks}
 										allTasks={allTasks}
-										setShowTaskInput={setShowTaskInput}
+										id={task.id}
+										key={task.id}
+										index={index}
 									/>
-								)}
-							</AnimatePresence>
-							{tasks.reverse().map((task, index) => (
-								<Task
-									task={task}
-									priority={priority}
-									setTasks={setTasks}
-									tasks={tasks}
-									allTasks={allTasks}
-									id={task.id}
-									key={task.id}
-									index={index}
-								/>
-							))}
-							{provided.placeholder}
-						</motion.div>
-					</div>
-				)}
-			</Droppable>
+								))}
+								{provided.placeholder}
+							</motion.div>
+						</div>
+					)}
+				</Droppable>
+			</div>
 		</div>
 	);
 };

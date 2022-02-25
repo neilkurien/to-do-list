@@ -21,6 +21,36 @@ const defaultTasks = () => {
 				id: uuidv4(),
 				isDone: false,
 			},
+			{
+				taskDetail: "3 High priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "3 High priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "3 High priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "3 High priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
+			{
+				taskDetail: "3 High priority item that takes up a line",
+				priority: "High",
+				id: uuidv4(),
+				isDone: false,
+			},
 		],
 		medium: [
 			{

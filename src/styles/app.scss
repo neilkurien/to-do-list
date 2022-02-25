@@ -91,10 +91,28 @@ button.show-done-btn {
 	margin-top: 64px;
 	padding: 24px 0;
 	width: 100%;
-	overflow-y: hidden;
+	overflow: hidden;
 	display: flex;
 	gap: 32px;
 	position: relative;
+}
+
+.board-container.hover,
+.board-container.show-done {
+	.priority-board-container {
+		.priority-board {
+			position: relative;
+		}
+		.priority-board.High {
+			z-index: 10;
+		}
+		.priority-board.Medium {
+			z-index: 3;
+		}
+		.priority-board.Low {
+			z-index: 2;
+		}
+	}
 }
 
 .priority-board-container {

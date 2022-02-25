@@ -43,9 +43,13 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 			setShowTask(false);
 			const listCopy = { ...allTasks };
 			const thisPriorityList = listCopy[priority.toLowerCase()];
+			const [clickedTask] = thisPriorityList.filter(
+				(task) => task.id === whichAction.e.target.id
+			);
 			const taskIndex = thisPriorityList.findIndex(
 				(task) => task.id === whichAction.e.target.id
 			);
+
 			const [removedElement, resultList] = removeFromList(
 				thisPriorityList,
 				taskIndex
@@ -58,11 +62,20 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 					setTasks(listCopy);
 				}, 650);
 			} else if (whichAction.name === "done") {
-				listCopy["done"] = addToList(
-					listCopy["done"],
-					0,
-					removedElement
-				);
+				if (!clickedTask.isDone) {
+					listCopy["done"] = addToList(
+						listCopy["done"],
+						0,
+						removedElement
+					);
+				} else {
+					listCopy[`${clickedTask.priority.toLowerCase()}`] =
+						addToList(
+							listCopy[`${clickedTask.priority.toLowerCase()}`],
+							0,
+							removedElement
+						);
+				}
 				setTimeout(() => {
 					setTasks(listCopy);
 				}, 650);

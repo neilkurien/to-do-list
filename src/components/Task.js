@@ -85,7 +85,7 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 				}, 650);
 			}
 		}
-	}, [whichAction]);
+	}, [allTasks, priority, setTasks, whichAction]);
 
 	//Input Handlers
 	const updateTasksHandler = (e) => {

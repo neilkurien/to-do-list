@@ -113,11 +113,7 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 			disableInteractiveElementBlocking
 		>
 			{(provided) => (
-				<div
-					{...provided.draggableProps}
-					{...provided.dragHandleProps}
-					ref={provided.innerRef}
-				>
+				<div {...provided.draggableProps} ref={provided.innerRef}>
 					<div className={`task-wrapper ${whichAction.name}`}>
 						{(whichAction.name === "delete" ||
 							whichAction.name === "done") && (
@@ -155,6 +151,7 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 											src={dragHandle}
 											className="drag-handle"
 											alt=""
+											{...provided.dragHandleProps}
 										/>
 										<label>
 											<input

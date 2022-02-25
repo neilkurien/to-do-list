@@ -3,7 +3,16 @@ import { useEffect } from "react/cjs/react.development";
 import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
 
-const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
+import { addToList } from "../utils";
+
+const NewTask = ({
+	priority,
+	tasks,
+	setTasks,
+	show,
+	setShowTaskInput,
+	allTasks,
+}) => {
 	//State
 	const [textInput, setTextInput] = useState("");
 	const [isEnabled, setIsEnabled] = useState(false);
@@ -33,12 +42,23 @@ const NewTask = ({ priority, tasks, setTasks, show, setShowTaskInput }) => {
 			isDone: false,
 		};
 
-		setTasks([...tasks, newTask]);
+		console.log(`here`);
+		console.log(priority);
+
+		const listCopy = { ...allTasks };
+		console.log(listCopy);
+		console.log(listCopy[`${priority.toLowerCase()}`]);
+
+		listCopy[`${priority.toLowerCase()}`] = addToList(
+			listCopy[`${priority.toLowerCase()}`],
+			0,
+			newTask
+		);
+		setTasks(listCopy);
+
 		clearTextInput();
 		setShowTaskInput(false);
-
-		//make sure task is entering from the top
-		//animate entry of task
+		console.log(`here2`);
 	};
 
 	const cancelHandler = () => {

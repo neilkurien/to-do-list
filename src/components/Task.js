@@ -54,6 +54,8 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 				thisPriorityList,
 				taskIndex
 			);
+
+			console.log(removedElement);
 			listCopy[priority.toLowerCase()] = resultList;
 
 			//either delete or mark as done
@@ -63,12 +65,14 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 				}, 650);
 			} else if (whichAction.name === "done") {
 				if (!clickedTask.isDone) {
+					removedElement.isDone = true;
 					listCopy["done"] = addToList(
 						listCopy["done"],
 						0,
 						removedElement
 					);
 				} else {
+					removedElement.isDone = false;
 					listCopy[`${clickedTask.priority.toLowerCase()}`] =
 						addToList(
 							listCopy[`${clickedTask.priority.toLowerCase()}`],

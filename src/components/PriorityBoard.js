@@ -49,6 +49,7 @@ const PriorityBoard = ({ tasks, priority, setTasks, allTasks }) => {
 										priority={priority}
 										setTasks={setTasks}
 										tasks={tasks}
+										allTasks={allTasks}
 										setShowTaskInput={setShowTaskInput}
 									/>
 								)}

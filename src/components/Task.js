@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Draggable } from "react-beautiful-dnd";
 
 //Utils
-import { removeFromList } from "../utils";
+import { removeFromList, addToList } from "../utils";
 
 //Icons
 import dragHandle from "../img/drag-handle-icon.svg";
@@ -39,39 +39,34 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 
 	//UseEffect that triggers when whichAction is changed
 	useEffect(() => {
-		//either delete or mark as done
-		if (whichAction.e || whichAction.name === "delete") {
+		if (whichAction.e) {
 			setShowTask(false);
-			setTimeout(() => {
-				const listCopy = { ...allTasks };
-				const thisPriorityList = listCopy[priority.toLowerCase()];
-				const taskIndex = thisPriorityList.findIndex(
-					(task) => task.id === whichAction.e.target.id
-				);
+			const listCopy = { ...allTasks };
+			const thisPriorityList = listCopy[priority.toLowerCase()];
+			const taskIndex = thisPriorityList.findIndex(
+				(task) => task.id === whichAction.e.target.id
+			);
+			const [removedElement, resultList] = removeFromList(
+				thisPriorityList,
+				taskIndex
+			);
+			listCopy[priority.toLowerCase()] = resultList;
 
-				const [removedElement, resultList] = removeFromList(
-					thisPriorityList,
-					taskIndex
+			//either delete or mark as done
+			if (whichAction.name === "delete") {
+				setTimeout(() => {
+					setTasks(listCopy);
+				}, 650);
+			} else if (whichAction.name === "done") {
+				listCopy["done"] = addToList(
+					listCopy["done"],
+					0,
+					removedElement
 				);
-				listCopy[priority.toLowerCase()] = resultList;
-
-				setTasks(listCopy);
-			}, 650);
-		} else if (whichAction.e || whichAction.name === "done") {
-			setShowTask(false);
-			const newTasks = tasks.map((t) => {
-				if (whichAction.e.target.id === t.id) {
-					return {
-						...t,
-						isDone: !t.isDone,
-					};
-				} else {
-					return {
-						...t,
-					};
-				}
-			});
-			setTasks(newTasks);
+				setTimeout(() => {
+					setTasks(listCopy);
+				}, 650);
+			}
 		}
 	}, [whichAction]);
 

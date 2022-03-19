@@ -10,6 +10,19 @@ const Header = ({
 	setHoverDone,
 	triggerConfetti,
 }) => {
+	const config = {
+		angle: "24",
+		spread: "40",
+		startVelocity: 40,
+		elementCount: 70,
+		dragFriction: 0.12,
+		duration: 3000,
+		stagger: 3,
+		width: "10px",
+		height: "10px",
+		perspective: "500px",
+		colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+	};
 	return (
 		<div className="header-container">
 			<div className="header-title">
@@ -23,7 +36,10 @@ const Header = ({
 					to-do list.
 				</h4>
 			</div>
-			<Confetti active={triggerConfetti} />
+			<div className="confetti">
+				<div className="confetti-emoji">🎉</div>
+				<Confetti active={triggerConfetti} config={config} />
+			</div>
 			<button
 				className="show-done-btn"
 				onClick={() => setShowDone(!showDone)}

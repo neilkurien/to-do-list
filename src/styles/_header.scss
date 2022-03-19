@@ -45,6 +45,19 @@
 	align-items: center;
 }
 
+.confetti {
+	position: absolute;
+	bottom: -35px;
+	font-size: 56px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.confetti-emoji {
+	transform: rotate(24deg);
+}
+
 .eye-icon,
 .eye-icon.hover.fill {
 	width: 16px;

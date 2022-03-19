@@ -27,12 +27,15 @@ function App() {
 
 	const [showDone, setShowDone] = useState(false);
 	const [hoverDone, setHoverDone] = useState(false);
-	const [triggerConfetti, setTriggerConfetti] = useState(false);
 
 	//Every time the state of tasks changes, write that change to localStorage
 	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}, [tasks]);
+
+	//React Confetti Settings
+
+	const [triggerConfetti, setTriggerConfetti] = useState(false);
 
 	useEffect(() => {
 		if (triggerConfetti === true) {

@@ -41,7 +41,7 @@ function App() {
 		if (triggerConfetti === true) {
 			setTimeout(() => {
 				setTriggerConfetti(false);
-			});
+			}, 100);
 		}
 	}, [triggerConfetti]);
 

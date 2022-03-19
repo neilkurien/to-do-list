@@ -47,15 +47,17 @@
 
 .confetti {
 	position: absolute;
+	z-index: 50;
 	bottom: -35px;
 	font-size: 56px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transform: rotate(24deg);
 }
 
-.confetti-emoji {
-	transform: rotate(24deg);
+.confetti-generator {
+	bottom: 40px;
 }
 
 .eye-icon,

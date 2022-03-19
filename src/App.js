@@ -27,11 +27,20 @@ function App() {
 
 	const [showDone, setShowDone] = useState(false);
 	const [hoverDone, setHoverDone] = useState(false);
+	const [triggerConfetti, setTriggerConfetti] = useState(false);
 
 	//Every time the state of tasks changes, write that change to localStorage
 	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}, [tasks]);
+
+	useEffect(() => {
+		if (triggerConfetti === true) {
+			setTimeout(() => {
+				setTriggerConfetti(false);
+			});
+		}
+	}, [triggerConfetti]);
 
 	//reorder function triggered on drop
 	const onDragEnd = (result) => {
@@ -78,6 +87,7 @@ function App() {
 					setShowDone={setShowDone}
 					hoverDone={hoverDone}
 					setHoverDone={setHoverDone}
+					triggerConfetti={triggerConfetti}
 				/>
 				<div
 					className={`board-container ${
@@ -91,6 +101,7 @@ function App() {
 							tasks={tasks.high}
 							allTasks={tasks}
 							key={1}
+							setTriggerConfetti={setTriggerConfetti}
 						/>
 						<PriorityBoard
 							priority="Medium"
@@ -98,6 +109,7 @@ function App() {
 							tasks={tasks.medium}
 							allTasks={tasks}
 							key={2}
+							setTriggerConfetti={setTriggerConfetti}
 						/>
 						<PriorityBoard
 							priority="Low"
@@ -105,6 +117,7 @@ function App() {
 							tasks={tasks.low}
 							allTasks={tasks}
 							key={3}
+							setTriggerConfetti={setTriggerConfetti}
 						/>
 					</div>
 					<div

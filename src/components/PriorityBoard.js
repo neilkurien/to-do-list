@@ -4,7 +4,13 @@ import NewTask from "./NewTask";
 import { motion, AnimatePresence } from "framer-motion";
 import { Droppable } from "react-beautiful-dnd";
 
-const PriorityBoard = ({ tasks, priority, setTasks, allTasks }) => {
+const PriorityBoard = ({
+	tasks,
+	priority,
+	setTasks,
+	allTasks,
+	setTriggerConfetti,
+}) => {
 	//State
 	const [showTaskInput, setShowTaskInput] = useState(false);
 
@@ -65,6 +71,7 @@ const PriorityBoard = ({ tasks, priority, setTasks, allTasks }) => {
 										id={task.id}
 										key={task.id}
 										index={index}
+										setTriggerConfetti={setTriggerConfetti}
 									/>
 								))}
 								{provided.placeholder}

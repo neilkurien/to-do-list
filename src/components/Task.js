@@ -11,7 +11,16 @@ import editIcon from "../img/edit.svg";
 import deleteIcon from "../img/delete.svg";
 import doneIcon from "../img/tick.svg";
 
-const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
+const Task = ({
+	priority,
+	task,
+	tasks,
+	setTasks,
+	id,
+	index,
+	allTasks,
+	setTriggerConfetti,
+}) => {
 	//State
 	const [showTask, setShowTask] = useState(true);
 
@@ -64,6 +73,7 @@ const Task = ({ priority, task, tasks, setTasks, id, index, allTasks }) => {
 					setTasks(listCopy);
 				}, 650);
 			} else if (whichAction.name === "done") {
+				setTriggerConfetti(true);
 				if (!clickedTask.isDone) {
 					removedElement.isDone = true;
 					listCopy["done"] = addToList(

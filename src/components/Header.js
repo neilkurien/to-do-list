@@ -1,8 +1,15 @@
 import React from "react";
+import Confetti from "react-dom-confetti";
 
 import logoType from "../img/todo-logo.svg";
 
-const Header = ({ showDone, setShowDone, hoverDone, setHoverDone }) => {
+const Header = ({
+	showDone,
+	setShowDone,
+	hoverDone,
+	setHoverDone,
+	triggerConfetti,
+}) => {
 	return (
 		<div className="header-container">
 			<div className="header-title">
@@ -16,6 +23,7 @@ const Header = ({ showDone, setShowDone, hoverDone, setHoverDone }) => {
 					to-do list.
 				</h4>
 			</div>
+			<Confetti active={triggerConfetti} />
 			<button
 				className="show-done-btn"
 				onClick={() => setShowDone(!showDone)}
